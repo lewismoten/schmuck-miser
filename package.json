@@ -1,0 +1,30 @@
+{
+  "name": "schmuck-miser",
+  "version": "1.0.0",
+  "description": "Tool to track my finances and sometimes foolish decisions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lewismoten/schmuck-miser.git"
+  },
+  "keywords": [
+    "finances",
+    "money",
+    "tracking",
+    "bank",
+    "stock",
+    "cryptocurrency",
+    "property",
+    "debt",
+    "assets"
+  ],
+  "author": "Lewis Edward Moten III",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lewismoten/schmuck-miser/issues"
+  },
+  "homepage": "https://github.com/lewismoten/schmuck-miser#readme"
+}
