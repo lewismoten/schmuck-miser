@@ -5,7 +5,6 @@ module.exports = function(env, argv) {
   const isProd = argv.mode === 'production';
   const isDev = !isProd;
 
-
   const config = {
     mode: isProd ? 'production' : 'development',
     devtool: isDev ? 'cheap-module-source-map' : undefined,
@@ -16,9 +15,7 @@ module.exports = function(env, argv) {
       path: path.resolve(__dirname, 'dist')
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        title: 'Miser Schmuck'
-      })
+      new HtmlWebpackPlugin()
     ],
     module: {
       rules: [{
