@@ -1,7 +1,7 @@
 import { createRoutine } from "redux-saga-routines";
+import littleEmoji from "little-emoji";
 import actionBuilder from "../actionBuilder";
-import emoji from "../../utils/emoji";
-const build = actionBuilder("accounts", emoji.cardIndexDividers);
+const build = actionBuilder("accounts", littleEmoji.cardIndexDividers);
 
 export const load = build("load");
 export const unload = build("unload");
