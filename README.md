@@ -15,3 +15,7 @@ I used to have a financial advisor and was preparing a few things for our annual
 As I started using the spreadsheet more often, I could see the "big picture". A budget let me see the total effect of wasteful spending. Benchmarking my holdings in the stock market against an index helped give me confidence that I was doing well. Unfortunately, it also revealed a great amount of opportunity loss with the accounts under management with my financial advisor.
 
 As I've continued throughout the year, I've continued to locate more data and evaluate how I can improve my financial health with great success.
+
+# Stack
+
+So for now, I'm experimenting with material-ui on this project. I'm also focusing on making this usable on my phone, so the interface isn't going to look great on desktop browsers at first.
