@@ -13,6 +13,8 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <Box className="App">
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -49,10 +51,12 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
-      This is an app.
-      <p>HasLoaded: {hasLoaded.toString()}</p>
-      <p>IsLoading: {isLoading.toString()}</p>
-      <p>hasError: {hasError.toString()}</p>
+      <Paper elevation={3} variant="outlined">
+        This is an app.
+        <p>HasLoaded: {hasLoaded.toString()}</p>
+        <p>IsLoading: {isLoading.toString()}</p>
+        <p>hasError: {hasError.toString()}</p>
+      </Paper>
       <BottomNavigation
         value={bottomNavigationValue}
         onChange={onChangeBottomNavigation}
@@ -65,7 +69,7 @@ function App() {
         />
         <BottomNavigationAction label="I/O" value="c" icon={<SaveIcon />} />
       </BottomNavigation>
-    </div>
+    </Box>
   );
 }
 
