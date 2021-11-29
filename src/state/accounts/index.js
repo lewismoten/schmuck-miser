@@ -1,16 +1,16 @@
-import { handleActions } from "redux-actions";
-import produce from "immer";
-import * as actions from "./actions";
+import { handleActions } from 'redux-actions';
+import produce from 'immer';
+import * as actions from './actions';
 
 const initialState = {
   allIds: [],
   byId: {},
   isLoading: false,
   hasLoaded: false,
-  hasError: false
+  hasError: false,
 };
 
-const onLoadRequest = produce((draft, action) => {
+const onLoadRequest = produce((draft) => {
   draft.isLoading = true;
 });
 
@@ -21,11 +21,11 @@ const onLoadSuccess = produce((draft, action) => {
   draft.hasLoaded = true;
 });
 
-const onLoadFailure = produce((draft, action) => {
+const onLoadFailure = produce((draft) => {
   draft.hasError = true;
 });
 
-const onLoadFulfill = produce((draft, action) => {
+const onLoadFulfill = produce((draft) => {
   draft.isLoading = false;
 });
 
@@ -34,7 +34,7 @@ export default handleActions(
     [actions.load.REQUEST]: onLoadRequest,
     [actions.load.SUCCESS]: onLoadSuccess,
     [actions.load.FAILURE]: onLoadFailure,
-    [actions.load.FULFILL]: onLoadFulfill
+    [actions.load.FULFILL]: onLoadFulfill,
   },
   initialState
 );

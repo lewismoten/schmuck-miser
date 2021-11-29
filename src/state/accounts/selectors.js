@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect';
 
 const slice = ({ accounts = {} } = {}) => accounts;
 export const allIds = createSelector(slice, ({ allIds = [] }) => allIds);

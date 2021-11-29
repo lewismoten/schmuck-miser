@@ -1,8 +1,8 @@
-import { all, takeEvery, put, select } from "redux-saga/effects";
-import * as actions from "./actions";
-import * as selectors from "./selectors";
+import { all, takeEvery, put, select } from 'redux-saga/effects';
+import * as actions from './actions';
+import * as selectors from './selectors';
 
-function* onLoad(action) {
+function* onLoad() {
   const isLoading = yield select(selectors.isLoading);
   if (isLoading) return;
 
@@ -11,9 +11,9 @@ function* onLoad(action) {
     byId: {
       1: {
         id: 1,
-        name: "first account"
-      }
-    }
+        name: 'first account',
+      },
+    },
   };
 
   yield put(actions.load.request());

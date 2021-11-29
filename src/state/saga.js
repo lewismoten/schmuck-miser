@@ -1,5 +1,5 @@
-import { all, fork } from "redux-saga/effects";
-import accounts from "./accounts/saga";
+import { all, fork } from 'redux-saga/effects';
+import accounts from './accounts/saga';
 
 function* saga() {
   yield all([fork(accounts)]);
