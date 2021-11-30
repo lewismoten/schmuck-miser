@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
@@ -17,10 +17,26 @@ import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 function Page({ title, children }) {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   let location = useLocation();
+
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode]
+  );
 
   const [bottomNavigationValue, setBottomNavigationValue] = useState(
     location.pathname
@@ -37,39 +53,50 @@ function Page({ title, children }) {
   }, []);
 
   return (
-    <Box className="App">
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box className="App">
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              {title}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <AppBar position="fixed" style={{ top: 'auto', bottom: 0 }}>
+          <BottomNavigation
+            value={bottomNavigationValue}
+            onChange={onChangeBottomNavigation}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {title}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <AppBar position="fixed" style={{ top: 'auto', bottom: 0 }}>
-        <BottomNavigation
-          value={bottomNavigationValue}
-          onChange={onChangeBottomNavigation}
-        >
-          <BottomNavigationAction label="Home" value="/" icon={<HomeIcon />} />
-          <BottomNavigationAction
-            label="Settings"
-            value="/settings"
-            icon={<SettingsIcon />}
-          />
-          <BottomNavigationAction label="I/O" value="/io" icon={<SaveIcon />} />
-        </BottomNavigation>
-      </AppBar>
-      {children}
-    </Box>
+            <BottomNavigationAction
+              label="Home"
+              value="/"
+              icon={<HomeIcon />}
+            />
+            <BottomNavigationAction
+              label="Settings"
+              value="/settings"
+              icon={<SettingsIcon />}
+            />
+            <BottomNavigationAction
+              label="I/O"
+              value="/io"
+              icon={<SaveIcon />}
+            />
+          </BottomNavigation>
+        </AppBar>
+        {children}
+      </Box>
+    </ThemeProvider>
   );
 }
 
