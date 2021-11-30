@@ -54,19 +54,21 @@ function Page({ title, children }) {
           </Typography>
         </Toolbar>
       </AppBar>
+      <AppBar position="fixed" style={{ top: 'auto', bottom: 0 }}>
+        <BottomNavigation
+          value={bottomNavigationValue}
+          onChange={onChangeBottomNavigation}
+        >
+          <BottomNavigationAction label="Home" value="/" icon={<HomeIcon />} />
+          <BottomNavigationAction
+            label="Settings"
+            value="/settings"
+            icon={<SettingsIcon />}
+          />
+          <BottomNavigationAction label="I/O" value="/io" icon={<SaveIcon />} />
+        </BottomNavigation>
+      </AppBar>
       {children}
-      <BottomNavigation
-        value={bottomNavigationValue}
-        onChange={onChangeBottomNavigation}
-      >
-        <BottomNavigationAction label="Home" value="/" icon={<HomeIcon />} />
-        <BottomNavigationAction
-          label="Settings"
-          value="/settings"
-          icon={<SettingsIcon />}
-        />
-        <BottomNavigationAction label="I/O" value="/io" icon={<SaveIcon />} />
-      </BottomNavigation>
     </Box>
   );
 }
