@@ -1,8 +1,8 @@
 import React from 'react';
 import Paper from '@mui/material/Paper';
 import { useSelector } from 'react-redux';
-import * as selectors from '../state/accounts/selectors';
-import Page from '../components/Page';
+import * as selectors from '../../state/accounts/selectors';
+import Page from '../../components/Page';
 
 const Home = () => {
   const isLoading = useSelector(selectors.isLoading);
