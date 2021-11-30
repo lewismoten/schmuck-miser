@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import * as actions from '../state/accounts/actions';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -20,12 +20,15 @@ import Box from '@mui/material/Box';
 function Page({ title, children }) {
   const dispatch = useDispatch();
   let navigate = useNavigate();
+  let location = useLocation();
 
-  const [bottomNavigationValue, setBottomNavigationValue] = useState('');
+  const [bottomNavigationValue, setBottomNavigationValue] = useState(
+    location.pathname
+  );
 
   const onChangeBottomNavigation = (e, value) => {
     setBottomNavigationValue(value);
-    navigate(`/${value}`);
+    navigate(value);
   };
 
   useEffect(() => {
@@ -56,13 +59,13 @@ function Page({ title, children }) {
         value={bottomNavigationValue}
         onChange={onChangeBottomNavigation}
       >
-        <BottomNavigationAction label="Home" value="" icon={<HomeIcon />} />
+        <BottomNavigationAction label="Home" value="/" icon={<HomeIcon />} />
         <BottomNavigationAction
           label="Settings"
-          value="settings"
+          value="/settings"
           icon={<SettingsIcon />}
         />
-        <BottomNavigationAction label="I/O" value="io" icon={<SaveIcon />} />
+        <BottomNavigationAction label="I/O" value="/io" icon={<SaveIcon />} />
       </BottomNavigation>
     </Box>
   );
