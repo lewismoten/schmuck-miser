@@ -11,6 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Settings from './route/Settings';
 import Home from './route/Home';
 import Io from './route/Io';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -34,18 +35,20 @@ function App() {
     [prefersDarkMode]
   );
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Suspense fallback={<CircularProgress />}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/io" element={<Io />} />
-            <Route path="/settings" element={<Settings />} />
-          </Routes>
-        </BrowserRouter>
-      </Suspense>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Suspense fallback={<CircularProgress />}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/io" element={<Io />} />
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
+          </BrowserRouter>
+        </Suspense>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 
