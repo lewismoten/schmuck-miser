@@ -2,7 +2,7 @@
 
 Tool to track my finances and sometimes foolish decisions.
 
-![Screenshot](screenshot.png)
+<img src="screenshot.png" width="300" alt="Screenshot" align="right" />
 
 # What is it again?
 
