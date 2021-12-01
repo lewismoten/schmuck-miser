@@ -14,8 +14,9 @@ const Io = () => {
   const onClickDownload = () => {
     dispatch(ioActions.download());
   };
-  const onClickUpload = () => {
-    dispatch(ioActions.upload());
+  const onChangeFile = ({ target: { files } }) => {
+    if (files.length === 0) return;
+    dispatch(ioActions.upload({ files }));
   };
   return (
     <Page title="I/O">
@@ -33,9 +34,10 @@ const Io = () => {
         startIcon={<FileUploadIcon />}
         variant="outlined"
         loadingPosition="start"
-        onClick={onClickUpload}
+        component="label"
       >
         Upload
+        <input type="file" hidden onChange={onChangeFile} />
       </LoadingButton>
     </Page>
   );
