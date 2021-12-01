@@ -4,6 +4,35 @@ Tool to track my finances and sometimes foolish decisions.
 
 <img src="screenshot.png" width="300" alt="Screenshot" align="right" />
 
+# Goals
+- Budgeting monthly, annually, and identify emergency budget
+- Dividend Payout Calendar
+- Chart of gross/net worth over time
+- Track
+  - Stock Trades, cost basis, net flow, and benchmarking
+  - Spending from cash accounts
+  - Paystubs
+  - Lifetime taxed income reported to social security administration
+  - Inflation adjustments
+  - Cryptocurrency purchases and mining
+  - Utility bills
+  - Energy usage on EV, Cryptocurrency Miners, and solar panel output
+  - Art Investments
+  - Assets
+  - Vehicles and upkeep/maintenance
+  - Mortgage and equity
+  - Loans, Credit Cards, and other forms of debt
+  - Cash rewards
+  - Credit Scores
+- Daily notes
+- Quick Data Entry
+- Data import from external sources
+- PDF report generation
+- Project future value of investments
+- Project future value of income
+- Project time before cryptocurrency mining meets thresholds to withdraw
+- Project taxes on short/long term realized gains
+
 # What is it again?
 
 For almost a year, I've been tracking my finances in a google spreadsheet. This spreadsheet has grown as I've added more things to track. Student loans, mortgage payments, utility bills, cryptocurrency mining, stocks held in the market and benchmarking for performance, dividend payout calendar, budgeting for a full year, pay stub logs, total lifetime earnings taxed via social security/medicare, credit scores, credit report details, daily notes, and the list goes on.
