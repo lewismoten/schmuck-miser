@@ -87,7 +87,6 @@ function* watchTheReader(routine, channel) {
   while (!fulfill) {
     try {
       let taken = yield take(channel);
-      console.log(taken);
       switch (taken.type) {
         case 'error':
           yield put(routine.failure(taken));
