@@ -13,7 +13,6 @@ function* onDownload() {
     const fileData = yield select(selectors.fileData);
     const fileType = yield select(selectors.fileType);
     const blob = new Blob([fileData], { type: fileType });
-    console.log('about to call saveAs', blob, fileName);
     yield call(saveAs, blob, fileName);
     yield put(actions.download.success());
   } catch (e) {
