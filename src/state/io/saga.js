@@ -1,4 +1,14 @@
-import { all, call, takeEvery, put, select } from 'redux-saga/effects';
+import {
+  all,
+  call,
+  take,
+  takeEvery,
+  put,
+  select,
+  fork,
+  cancelled,
+} from 'redux-saga/effects';
+import { eventChannel, END } from 'redux-saga';
 import * as actions from './actions';
 import * as selectors from './selectors';
 import { saveAs } from 'file-saver';
@@ -28,8 +38,6 @@ function* onUpload(action) {
 
   const { file } = action.payload;
 
-  yield put(actions.upload.request());
-
   if (file.type !== 'application/json' || !/.json$/i.test(file.name)) {
     yield put(actions.upload.failure('Expected json'));
     yield put(actions.upload.fulfill());
@@ -42,32 +50,78 @@ function* onUpload(action) {
     return;
   }
 
-  const reader = new FileReader();
-  // reader.onerror = (e) => {
-  //   console.log('onerror', e);
-  // };
-  // reader.onprogress = (e) => {
-  //   console.log('onprogress', e);
-  // };
-  // reader.onabort = (e) => {
-  //   console.log('onabort', e);
-  // };
-  // reader.onloadstart = ({ loaded, total }) => {
-  //   console.log('onloadstart', 100 * (loaded / total));
-  // };
-  // reader.onloadend = ({ loaded, total }) => {
-  //   console.log('onloadend', 100 * (loaded / total));
-  // };
-  reader.onload = () => {
-    console.log('onLoad', reader.result);
-  };
-
-  reader.readAsText(file);
-  yield put(actions.upload.success());
-  // yield put(actions.upload.failure());
-  yield put(actions.upload.fulfill());
+  const channel = yield call(readerBroadcast, file);
+  yield fork(watchTheReader, actions.upload, channel);
 }
 
+const readerBroadcast = (file) => {
+  return eventChannel((emitter) => {
+    const emitProgress = ({ loaded, total, type }) =>
+      emitter({ type, loaded, total });
+
+    const emitProgressAndStop = ({ loaded, total, type }) => {
+      emitter({ type, loaded, total });
+      emitter(END);
+    };
+
+    const emitResult = ({ loaded, total, type }) => {
+      emitter({ type, loaded, total, result: reader.result });
+    };
+
+    const reader = new FileReader();
+    reader.onprogress = emitProgress;
+    reader.onloadstart = emitProgress;
+    reader.onloadend = emitProgress;
+    reader.onerror = emitProgressAndStop;
+    reader.onabort = emitProgressAndStop;
+    reader.onload = emitResult;
+    reader.readAsText(file);
+    const unsubscribe = () => {};
+    return unsubscribe;
+  });
+};
+
+function* watchTheReader(routine, channel) {
+  yield put(routine.request());
+  let fulfill = false;
+  while (!fulfill) {
+    try {
+      let taken = yield take(channel);
+      console.log(taken);
+      switch (taken.type) {
+        case 'error':
+          yield put(routine.failure(taken));
+          fulfill = true;
+          break;
+        case 'abort':
+          yield put(routine.abort(taken));
+          fulfill = true;
+          break;
+        case 'progress':
+        case 'loadstart':
+        case 'loadend':
+          yield put(routine.progress(taken));
+          break;
+        case 'load':
+          yield put(routine.success(taken));
+          break;
+      }
+    } catch (e) {
+      yield put(
+        routine.failure({
+          error: 'error reading file',
+        })
+      );
+      fulfill = true;
+    } finally {
+      if (yield cancelled()) {
+        channel.close();
+        fulfill = true;
+      }
+    }
+  }
+  yield put(routine.failure());
+}
 export default function* handleRequestSaga() {
   yield all([
     takeEvery(actions.download.TRIGGER, onDownload),

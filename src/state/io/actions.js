@@ -3,4 +3,4 @@ import actionBuilder from '../actionBuilder';
 const build = actionBuilder('io', emoji.floppyDisk);
 
 export const download = build('download');
-export const upload = build('upload');
+export const upload = build.progress('upload');
