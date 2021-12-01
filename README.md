@@ -4,6 +4,10 @@ Tool to track my finances and sometimes foolish decisions.
 
 <img src="screenshot.png" width="300" alt="Screenshot" align="right" />
 
+# Whats going on now...
+
+At the moment, most of the work is targeting underlying architecture in how things are loaded, choosing what frameworks to use, code splitting, persistence of data, etc. The app is not in a usable state for an end-user.
+
 # Goals
 - Budgeting monthly, annually, and identify emergency budget
 - Dividend Payout Calendar
