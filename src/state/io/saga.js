@@ -28,10 +28,19 @@ function* onUpload(action) {
 
   const { file } = action.payload;
 
-  console.log('name', file.name);
-  console.log('size', file.size);
-  console.log('type', file.type);
-  console.log('last modified', file.lastModifiedDate);
+  yield put(actions.upload.request());
+
+  if (file.type !== 'application/json' || !/.json$/i.test(file.name)) {
+    yield put(actions.upload.failure('Expected json'));
+    yield put(actions.upload.fulfill());
+    return;
+  }
+
+  if (file.size <= 0) {
+    yield put(actions.upload.failure('File size too small'));
+    yield put(actions.upload.fulfill());
+    return;
+  }
 
   const reader = new FileReader();
   // reader.onerror = (e) => {
@@ -53,16 +62,10 @@ function* onUpload(action) {
     console.log('onLoad', reader.result);
   };
 
-  try {
-    yield put(actions.upload.request());
-    reader.readAsText(file);
-
-    yield put(actions.upload.success());
-  } catch (e) {
-    yield put(actions.upload.failure());
-  } finally {
-    yield put(actions.upload.fulfill());
-  }
+  reader.readAsText(file);
+  yield put(actions.upload.success());
+  // yield put(actions.upload.failure());
+  yield put(actions.upload.fulfill());
 }
 
 export default function* handleRequestSaga() {
