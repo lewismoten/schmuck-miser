@@ -14,9 +14,13 @@ const Io = () => {
   const onClickDownload = () => {
     dispatch(ioActions.download());
   };
-  const onChangeFile = ({ target: { files } }) => {
-    if (files.length === 0) return;
-    dispatch(ioActions.upload({ files }));
+  const onChangeFile = ({
+    target: {
+      files: [file],
+    },
+  }) => {
+    if (!file) return;
+    dispatch(ioActions.upload({ file }));
   };
   return (
     <Page title="I/O">

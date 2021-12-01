@@ -5,10 +5,25 @@ export const isDownloading = createSelector(
   slice,
   ({ isDownloading }) => !!isDownloading
 );
-export const hasError = createSelector(slice, ({ hasError }) => !!hasError);
+export const hasDownloadError = createSelector(
+  slice,
+  ({ hasDownloadError }) => !!hasDownloadError
+);
 export const hasDownloaded = createSelector(
   slice,
   ({ hasDownloaded }) => !!hasDownloaded
+);
+export const isUploading = createSelector(
+  slice,
+  ({ isUploading }) => !!isUploading
+);
+export const hasUploadError = createSelector(
+  slice,
+  ({ hasUploadError }) => !!hasUploadError
+);
+export const hasUploaded = createSelector(
+  slice,
+  ({ hasUploaded }) => !!hasUploaded
 );
 
 export const fileName = () => 'file.json';
