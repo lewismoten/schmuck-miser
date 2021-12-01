@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Page from '../../components/Page';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 import LoadingButton from '@mui/lab/LoadingButton';
 import * as ioActions from '../../state/io/actions';
 import * as ioSelectors from '../../state/io/selectors';
@@ -13,6 +14,9 @@ const Io = () => {
   const onClickDownload = () => {
     dispatch(ioActions.download());
   };
+  const onClickUpload = () => {
+    dispatch(ioActions.upload());
+  };
   return (
     <Page title="I/O">
       <LoadingButton
@@ -23,6 +27,15 @@ const Io = () => {
         onClick={onClickDownload}
       >
         Download
+      </LoadingButton>
+      <LoadingButton
+        loading={isDownloading}
+        startIcon={<FileUploadIcon />}
+        variant="outlined"
+        loadingPosition="start"
+        onClick={onClickUpload}
+      >
+        Upload
       </LoadingButton>
     </Page>
   );
