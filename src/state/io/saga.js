@@ -42,6 +42,7 @@ function* onUpload(action) {
     return;
   }
 
+  yield put(actions.upload.request());
   const channel = yield call(readAsText, file);
   yield fork(watchReadAsText, actions.readAsText, channel);
 }

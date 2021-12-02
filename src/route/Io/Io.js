@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Page from '../../components/Page';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
@@ -10,6 +10,12 @@ import * as ioSelectors from '../../state/io/selectors';
 const Io = () => {
   const dispatch = useDispatch();
   const isDownloading = useSelector(ioSelectors.isDownloading);
+  const isUploading = useSelector(ioSelectors.isUploading);
+  const fileRef = useRef();
+
+  useEffect(() => {
+    if (!isUploading && !!fileRef.current) fileRef.current.value = '';
+  }, [isUploading]);
 
   const onClickDownload = () => {
     dispatch(ioActions.download());
@@ -34,14 +40,14 @@ const Io = () => {
         Download
       </LoadingButton>
       <LoadingButton
-        loading={isDownloading}
+        loading={isUploading}
         startIcon={<FileUploadIcon />}
         variant="outlined"
         loadingPosition="start"
         component="label"
       >
         Upload
-        <input type="file" hidden onChange={onChangeFile} />
+        <input ref={fileRef} type="file" hidden onChange={onChangeFile} />
       </LoadingButton>
     </Page>
   );
