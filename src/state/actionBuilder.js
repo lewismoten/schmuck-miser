@@ -9,16 +9,16 @@ const actionBuilder = (domain, emoji) => {
 
   const build = (action) => createRoutine(actionTypePrefix(action));
 
-  const withProgress = (action) => {
-    const creator = createRoutineCreator([
-      ...defaultRoutineStages,
-      'PROGRESS',
-      'ABORT',
-    ]);
+  const withStages = (action, ...stages) => {
+    const creator = createRoutineCreator([...defaultRoutineStages, ...stages]);
     return creator(actionTypePrefix(action));
   };
 
-  build.progress = withProgress;
+  const fileReaderStages = (action) =>
+    withStages(action, 'PROGRESS', 'ABORT');
+
+  build.withStages = withStages;
+  build.fileReaderStages = fileReaderStages;
 
   return build;
 };

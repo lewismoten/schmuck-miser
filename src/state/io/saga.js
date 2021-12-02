@@ -1,17 +1,15 @@
 import {
   all,
   call,
-  take,
   takeEvery,
   put,
   select,
   fork,
-  cancelled,
 } from 'redux-saga/effects';
-import { eventChannel, END } from 'redux-saga';
 import * as actions from './actions';
 import * as selectors from './selectors';
 import { saveAs } from 'file-saver';
+import readAsText, { watchReadAsText } from './readAsText';
 
 function* onDownload() {
   const isDownloading = yield select(selectors.isDownloading);
@@ -50,80 +48,18 @@ function* onUpload(action) {
     return;
   }
 
-  const channel = yield call(readerBroadcast, file);
-  yield fork(watchTheReader, actions.upload, channel);
+  const channel = yield call(readAsText, file);
+  yield fork(watchReadAsText, actions.readAsText, channel);
 }
 
-const readerBroadcast = (file) => {
-  return eventChannel((emitter) => {
-    const emitProgress = ({ loaded, total, type }) =>
-      emitter({ type, loaded, total });
-
-    const emitProgressAndStop = ({ loaded, total, type }) => {
-      emitter({ type, loaded, total });
-      emitter(END);
-    };
-
-    const emitResult = ({ loaded, total, type }) => {
-      emitter({ type, loaded, total, result: reader.result });
-    };
-
-    const reader = new FileReader();
-    reader.onprogress = emitProgress;
-    reader.onloadstart = emitProgress;
-    reader.onloadend = emitProgress;
-    reader.onerror = emitProgressAndStop;
-    reader.onabort = emitProgressAndStop;
-    reader.onload = emitResult;
-    reader.readAsText(file);
-    const unsubscribe = () => {};
-    return unsubscribe;
-  });
-};
-
-function* watchTheReader(routine, channel) {
-  yield put(routine.request());
-  let fulfill = false;
-  while (!fulfill) {
-    try {
-      let taken = yield take(channel);
-      switch (taken.type) {
-        case 'error':
-          yield put(routine.failure(taken));
-          fulfill = true;
-          break;
-        case 'abort':
-          yield put(routine.abort(taken));
-          fulfill = true;
-          break;
-        case 'progress':
-        case 'loadstart':
-        case 'loadend':
-          yield put(routine.progress(taken));
-          break;
-        case 'load':
-          yield put(routine.success(taken));
-          break;
-      }
-    } catch (e) {
-      yield put(
-        routine.failure({
-          error: 'error reading file',
-        })
-      );
-      fulfill = true;
-    } finally {
-      if (yield cancelled()) {
-        channel.close();
-        fulfill = true;
-      }
-    }
-  }
-  yield put(routine.failure());
+function* onReadAsTextFulfill() {
+  yield put(actions.upload.fulfill());
 }
+
 export default function* handleRequestSaga() {
   yield all([
     takeEvery(actions.download.TRIGGER, onDownload),
     takeEvery(actions.upload.TRIGGER, onUpload),
+    takeEvery(actions.readAsText.FULFILL, onReadAsTextFulfill),
   ]);
 }
