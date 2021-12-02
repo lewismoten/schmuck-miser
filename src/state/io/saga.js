@@ -1,12 +1,6 @@
-import {
-  all,
-  call,
-  takeEvery,
-  put,
-  select,
-  fork,
-} from 'redux-saga/effects';
+import { all, call, takeEvery, put, select, fork } from 'redux-saga/effects';
 import * as actions from './actions';
+import * as rootActions from '../actions';
 import * as selectors from './selectors';
 import { saveAs } from 'file-saver';
 import readAsText, { watchReadAsText } from './readAsText';
@@ -54,7 +48,8 @@ function* onUpload(action) {
 
 function* onReadAsTextSuccess(action) {
   const data = JSON.parse(action.payload.result);
-  yield put(actions.upload.success(data));
+  yield put(rootActions.restore(data));
+  yield put(actions.upload.success());
 }
 function* onReadAsTextFulfill() {
   yield put(actions.upload.fulfill());

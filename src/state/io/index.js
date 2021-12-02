@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import produce from 'immer';
 import * as actions from './actions';
+import * as rootActions from '../actions';
 
 const initialState = {
   isDownloading: false,
@@ -33,8 +34,13 @@ const onUploadRequest = produce((draft) => {
   draft.hasUploadError = false;
 });
 
+const onRestore = produce(() => {
+  return initialState;
+});
 const onUploadSuccess = produce((draft) => {
   draft.hasUploaded = true;
+  draft.isUploading = false;
+  draft.isDownloading = false;
 });
 
 const onUploadFailure = produce((draft) => {
@@ -51,6 +57,7 @@ export default handleActions(
     [actions.download.SUCCESS]: onDownloadSuccess,
     [actions.download.FAILURE]: onDownloadFailure,
     [actions.download.FULFILL]: onDownloadFulfill,
+    [rootActions.restore.TRIGGER]: onRestore,
     [actions.upload.REQUEST]: onUploadRequest,
     [actions.upload.SUCCESS]: onUploadSuccess,
     [actions.upload.FAILURE]: onUploadFailure,
