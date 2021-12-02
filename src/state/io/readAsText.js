@@ -26,7 +26,12 @@ const readAsText = (file) => {
     reader.onerror = emitProgressAndStop;
     reader.onabort = emitProgressAndStop;
     reader.onload = emitResult;
-    reader.readAsText(file);
+    try {
+      reader.readAsText(file);
+    } catch (e){
+      emitter({ type: 'error', message: e.message });
+      emitter(END);
+    }
     const unsubscribe = () => {};
     return unsubscribe;
   });
@@ -40,12 +45,12 @@ function* watchReadAsText(routine, channel) {
       let taken = yield take(channel);
       switch (taken.type) {
         case 'error':
-          yield put(routine.failure(taken));
           fulfill = true;
+          yield put(routine.failure(taken));
           break;
         case 'abort':
-          yield put(routine.abort(taken));
           fulfill = true;
+          yield put(routine.abort(taken));
           break;
         case 'progress':
           yield put(routine.progress(taken));
@@ -54,21 +59,19 @@ function* watchReadAsText(routine, channel) {
           yield put(routine.request(taken));
           break;
         case 'loadend':
-          yield put(routine.fulfill(taken));
           fulfill = true;
           fulfilled = true;
+          yield put(routine.fulfill(taken));
           break;
         case 'load':
           yield put(routine.success(taken));
           break;
       }
     } catch (e) {
-      yield put(
-        routine.failure({
-          error: 'error reading file',
-        })
-      );
       fulfill = true;
+      yield put(
+        routine.failure({ type: 'error', message: e.message })
+      );
     } finally {
       if (yield cancelled()) {
         channel.close();
