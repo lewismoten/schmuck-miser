@@ -1,6 +1,5 @@
 # Changelog
 
-## [Unreleased]
+## Unreleased
 
-- Export data as json
-- Import data as json (wip)
+- Import/Export global state as json
