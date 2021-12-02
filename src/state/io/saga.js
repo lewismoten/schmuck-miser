@@ -52,6 +52,10 @@ function* onUpload(action) {
   yield fork(watchReadAsText, actions.readAsText, channel);
 }
 
+function* onReadAsTextSuccess(action) {
+  const data = JSON.parse(action.payload.result);
+  yield put(actions.upload.success(data));
+}
 function* onReadAsTextFulfill() {
   yield put(actions.upload.fulfill());
 }
@@ -60,6 +64,7 @@ export default function* handleRequestSaga() {
   yield all([
     takeEvery(actions.download.TRIGGER, onDownload),
     takeEvery(actions.upload.TRIGGER, onUpload),
+    takeEvery(actions.readAsText.SUCCESS, onReadAsTextSuccess),
     takeEvery(actions.readAsText.FULFILL, onReadAsTextFulfill),
   ]);
 }
