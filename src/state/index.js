@@ -14,7 +14,10 @@ const sliceReducers = combineReducers(reducers);
 const rootReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case actions.restore.TRIGGER:
-      state = action.payload;
+      state = {
+        ...state,
+        ...action.payload,
+      };
       break;
     default:
       break;
