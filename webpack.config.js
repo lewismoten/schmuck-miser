@@ -6,6 +6,12 @@ const chunkFilename = ({ chunk: { id } }) =>
   /^vendors-/.test(id) ? 'vendors/[contenthash:8].js' : '[name].js';
 
 module.exports = function (env, argv) {
+
+  if (process.env.NODE_ENV === 'production') {
+    argv.mode = 'production';
+  } else {
+    argv.mode = 'development';
+  }
   const isProd = argv.mode === 'production';
   const isDev = !isProd;
 
