@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import TopBar from './TopBar';
 import BottomBar from './BottomBar';
 import Theme from '../Theme';
+import LaunchAdd from '../LaunchAdd';
 
 function Page({ title, children }) {
   return (
@@ -14,6 +15,7 @@ function Page({ title, children }) {
         <TopBar title={title} />
         <BottomBar />
         {children}
+        <LaunchAdd></LaunchAdd>
       </Box>
     </Theme>
   );
