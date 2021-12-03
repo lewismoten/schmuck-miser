@@ -22,7 +22,11 @@ const BottomBar = () => {
   };
 
   return (
-    <AppBar position="fixed" style={{ top: 'auto', bottom: 0 }}>
+    <AppBar
+      position="fixed"
+      color="secondary"
+      style={{ top: 'auto', bottom: 0 }}
+    >
       <BottomNavigation
         value={bottomNavigationValue}
         onChange={onChangeBottomNavigation}

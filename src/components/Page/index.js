@@ -11,12 +11,12 @@ import LaunchAdd from '../LaunchAdd';
 function Page({ title, children }) {
   return (
     <Theme>
-      <Box className="App">
-        <TopBar title={title} />
-        <BottomBar />
+      <TopBar title={title} />
+      <Box className="App" sx={{ marginBottom: '60px' }}>
         {children}
-        <LaunchAdd></LaunchAdd>
       </Box>
+      <LaunchAdd></LaunchAdd>
+      <BottomBar />
     </Theme>
   );
 }

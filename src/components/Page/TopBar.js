@@ -8,7 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 
 const TopBar = ({ title }) => (
-  <AppBar position="static">
+  <AppBar position="sticky" color="primary">
     <Toolbar>
       <IconButton
         size="large"
