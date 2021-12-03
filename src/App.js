@@ -2,7 +2,7 @@ import React, { useEffect, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import * as actions from './state/accounts/actions';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Settings from './route/Settings';
 import Home from './route/Home';
@@ -21,13 +21,13 @@ function App() {
   return (
     <ErrorBoundary>
       <Suspense fallback={<RouteLoading />}>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/io" element={<Io />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Home />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </Suspense>
     </ErrorBoundary>
   );
