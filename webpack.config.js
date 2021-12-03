@@ -18,7 +18,7 @@ module.exports = function (env, argv) {
       asyncChunks: true,
       chunkFilename,
       filename: '[name].js',
-      publicPath: '/',
+      publicPath: '',
       path: path.resolve(__dirname, 'docs'),
     },
     plugins: [new HtmlWebpackPlugin()],
