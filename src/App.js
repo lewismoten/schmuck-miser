@@ -23,9 +23,9 @@ function App() {
       <Suspense fallback={<RouteLoading />}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/io" element={<Io />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="*" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </Suspense>
