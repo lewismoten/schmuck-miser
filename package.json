@@ -4,7 +4,7 @@
   "private": true,
   "description": "Tool to track my finances and sometimes foolish decisions",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --node-env=production",
     "start": "webpack-dev-server"
   },
   "repository": {
