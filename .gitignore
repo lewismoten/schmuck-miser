@@ -2,3 +2,6 @@ logs
 *.log
 node_modules/
 dist/
+
+# macOS folder attributes
+.DS_Store
