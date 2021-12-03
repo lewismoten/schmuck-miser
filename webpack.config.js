@@ -17,7 +17,7 @@ module.exports = function (env, argv) {
 
   const config = {
     mode: isProd ? 'production' : 'development',
-    devtool: isDev ? 'cheap-module-source-map' : undefined,
+    devtool: isDev ? 'cheap-module-source-map' : 'source-map',
     entry: './src/index.js',
     output: {
       clean: true,
