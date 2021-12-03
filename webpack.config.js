@@ -2,6 +2,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const chunkFilename = ({ chunk: { id } }) =>
+  /^vendors-/.test(id) ? 'vendors/[contenthash:8].js' : '[name].js';
+
 module.exports = function (env, argv) {
   const isProd = argv.mode === 'production';
   const isDev = !isProd;
@@ -11,9 +14,12 @@ module.exports = function (env, argv) {
     devtool: isDev ? 'cheap-module-source-map' : undefined,
     entry: './src/index.js',
     output: {
-      filename: 'assets/js/[name].[contenthash:8].js',
+      clean: true,
+      asyncChunks: true,
+      chunkFilename,
+      filename: '[name].js',
       publicPath: '/',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'docs'),
     },
     plugins: [new HtmlWebpackPlugin()],
     module: {
