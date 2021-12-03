@@ -8,7 +8,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SaveIcon from '@mui/icons-material/Save';
 
-const PageNavigation = () => {
+const BottomBar = () => {
   let navigate = useNavigate();
   let location = useLocation();
 
@@ -39,4 +39,4 @@ const PageNavigation = () => {
   );
 };
 
-export default PageNavigation;
+export default BottomBar;

@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 
-import Theme from './Theme';
-import PageTitle from './PageTitle';
-import PageNavigation from './PageNavigation';
+import TopBar from './TopBar';
+import BottomBar from './BottomBar';
+import Theme from '../Theme';
 
 function Page({ title, children }) {
   return (
     <Theme>
       <Box className="App">
-        <PageTitle title={title} />
-        <PageNavigation />
+        <TopBar title={title} />
+        <BottomBar />
         {children}
       </Box>
     </Theme>

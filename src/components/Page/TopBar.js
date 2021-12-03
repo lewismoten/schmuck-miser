@@ -7,7 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 
-const PageTitle = ({ title }) => (
+const TopBar = ({ title }) => (
   <AppBar position="static">
     <Toolbar>
       <IconButton
@@ -26,8 +26,8 @@ const PageTitle = ({ title }) => (
   </AppBar>
 );
 
-PageTitle.propTypes = {
+TopBar.propTypes = {
   title: PropTypes.string,
 };
 
-export default PageTitle;
+export default TopBar;
