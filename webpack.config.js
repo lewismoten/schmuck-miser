@@ -1,6 +1,7 @@
 /* eslint-env node */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const chunkFilename = ({ chunk: { id } }) =>
   /^vendors-/.test(id) ? 'vendors/[contenthash:8].js' : '[name].js';
@@ -43,6 +44,9 @@ module.exports = function (env, argv) {
         },
       },
     });
+    config.plugins.push(
+      new CompressionPlugin({ minRatio: 0.8, deleteOriginalAssets: true })
+    );
   }
 
   if (isDev) {
