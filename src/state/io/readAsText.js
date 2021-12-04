@@ -1,8 +1,4 @@
-import {
-  take,
-  put,
-  cancelled,
-} from 'redux-saga/effects';
+import { take, put, cancelled } from 'redux-saga/effects';
 import { eventChannel, END } from 'redux-saga';
 
 const readAsText = (file) => {
@@ -28,7 +24,7 @@ const readAsText = (file) => {
     reader.onload = emitResult;
     try {
       reader.readAsText(file);
-    } catch (e){
+    } catch (e) {
       emitter({ type: 'error', message: e.message });
       emitter(END);
     }
@@ -69,9 +65,7 @@ function* watchReadAsText(routine, channel) {
       }
     } catch (e) {
       fulfill = true;
-      yield put(
-        routine.failure({ type: 'error', message: e.message })
-      );
+      yield put(routine.failure({ type: 'error', message: e.message }));
     } finally {
       if (yield cancelled()) {
         channel.close();
@@ -79,9 +73,8 @@ function* watchReadAsText(routine, channel) {
       }
     }
   }
-  if(!fulfilled)
-    yield put(routine.fulfill());
+  if (!fulfilled) yield put(routine.fulfill());
 }
 
 export default readAsText;
-export { watchReadAsText }
+export { watchReadAsText };

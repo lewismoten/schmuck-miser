@@ -2,26 +2,19 @@ import { all, call, takeEvery, put, select, fork } from 'redux-saga/effects';
 import * as actions from './actions';
 import * as rootActions from '../actions';
 import * as selectors from './selectors';
-import { saveAs } from 'file-saver';
+import saveAsBlob, { watchSaveAsBlob } from './saveAsBlob';
 import readAsText, { watchReadAsText } from './readAsText';
 
 function* onDownload() {
   const isDownloading = yield select(selectors.isDownloading);
   if (isDownloading) return;
 
-  try {
-    yield put(actions.download.request());
-    const fileName = yield select(selectors.fileName);
-    const fileData = yield select(selectors.fileData);
-    const fileType = yield select(selectors.fileType);
-    const blob = new Blob([fileData], { type: fileType });
-    yield call(saveAs, blob, fileName);
-    yield put(actions.download.success());
-  } catch (e) {
-    yield put(actions.download.failure());
-  } finally {
-    yield put(actions.download.fulfill());
-  }
+  const name = yield select(selectors.fileName);
+  const data = yield select(selectors.fileData);
+  const type = yield select(selectors.fileType);
+
+  const channel = yield call(saveAsBlob, data, type, name);
+  yield fork(watchSaveAsBlob, actions.download, channel);
 }
 
 function* onUpload(action) {
