@@ -1,2 +1,7 @@
 /* eslint-env node */
-module.exports = require(`./webpack.config.${process.env.NODE_ENV}.js`);
+
+const {
+  env: { NODE_ENV },
+} = process;
+
+module.exports = require(`./configuration/webpack.${NODE_ENV}.js`);
