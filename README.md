@@ -63,3 +63,9 @@ As I've continued throughout the year, I've continued to locate more data and ev
 # Stack
 
 So for now, I'm experimenting with material-ui on this project. I'm also focusing on making this usable on my phone, so the interface isn't going to look great on desktop browsers at first.
+
+# Other notes
+
+I'm targeting low transfer rates because I have found myself in large dead zones when visiting family, and my cell phones data plan is limited to 4GB/month. And because I'm interested in performance.
+
+I'm reviewing a few libraries for localization.
