@@ -10,8 +10,9 @@ At the moment, most of the work is targeting underlying architecture in how thin
 
 # Demo
 
-:construction: Things will break!
-<https://lewismoten.github.io/schmuck-miser/>
+:construction: Things will break! :construction:
+
+:construction: <https://lewismoten.github.io/schmuck-miser/> :construction:
 
 # Goals
 
