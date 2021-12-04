@@ -8,7 +8,7 @@ import Settings from './route/Settings';
 import Home from './route/Home';
 import Io from './route/Io';
 import ErrorBoundary from './components/ErrorBoundary';
-import RouteLoading from './components/RouteLoading';
+import RootFallback from './components/RootFallback';
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <Suspense fallback={<RouteLoading />}>
+      <Suspense fallback={<RootFallback />}>
         <HashRouter>
           <Routes>
             <Route path="/io" element={<Io />} />
