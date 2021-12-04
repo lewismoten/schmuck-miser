@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../state/accounts/actions';
-
+import RootFallback from '../../components/RootFallback';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Settings from '../Settings';
@@ -17,13 +17,15 @@ const Router = () => {
   }, []);
 
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/io" element={<Io />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
-    </HashRouter>
+    <Suspense fallback={<RootFallback loading="route" />}>
+      <HashRouter>
+        <Routes>
+          <Route path="/io" element={<Io />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </HashRouter>
+    </Suspense>
   );
 };
 
