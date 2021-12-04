@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
-import * as actions from '../state/accounts/actions';
+import * as actions from '../../state/accounts/actions';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
