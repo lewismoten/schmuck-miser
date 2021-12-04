@@ -2,19 +2,15 @@
 import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-
 import reduxSaga from 'redux-saga';
 import reduxThunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 import rootReducer from './index';
-const persistedReducer = persistReducer(persistConfig, rootReducer);
 import rootSaga from './saga';
+
+const persistConfig = { key: 'root', storage };
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const sagaMiddleware = reduxSaga();
 
