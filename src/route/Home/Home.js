@@ -9,7 +9,6 @@ const lorem = new LoremIpsum();
 const Home = () => {
   return (
     <Page title="Home">
-      {__('helloWorld')}
       <Paper>
         {lorem
           .generateParagraphs(10)
