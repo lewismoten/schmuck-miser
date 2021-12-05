@@ -49,9 +49,11 @@ const SelectLanguage = ({ value, onChange }) => {
     />
   );
 
+  const selectedOption = options.find(({ id }) => id === value);
+
   return (
     <Autocomplete
-      value={value}
+      value={selectedOption}
       onChange={handleChange}
       sx={{ width: 300 }}
       options={options}
