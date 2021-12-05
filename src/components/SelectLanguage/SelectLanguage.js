@@ -4,23 +4,19 @@ import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useTranslation } from 'react-i18next';
+import emoji from '@lewismoten/emoji';
 
-const languages = {
-  en: {
-    nativeName: 'English',
-  },
-  'en-US': {
-    nativeName: 'English (US)',
-  },
-  de: {
-    nativeName: 'Deutsch',
-  },
-};
-
-const getOptionLabel = (key) => {
-  console.log(key);
-  if (key in languages) return languages[key].nativeName;
-  return key;
+const options = [
+  { id: 'en', label: 'English' },
+  { id: 'en-US', label: `${emoji.flagUnitedStates} English (US)` },
+  { id: 'de', label: 'Deutsch' },
+];
+const getOptionLabel = (value) => {
+  if (typeof value === 'object' && 'label' in value) return value.label;
+  const option = options.find(({ id }) => id === value);
+  if (option) return option.label;
+  console.log('could not find', { value });
+  return value;
 };
 const renderOption = (props, option) => (
   <Box component="li" {...props}>
@@ -28,11 +24,15 @@ const renderOption = (props, option) => (
   </Box>
 );
 
-const SelectLanguage = ({ value }) => {
+const SelectLanguage = ({ value, onChange }) => {
   const { t } = useTranslation();
   const __ = (k) => t(`components.selectLanguage.${k}`);
 
-  const renderInput = (inputProps, ...props) => (
+  const handleChange = (e, o, action) => {
+    if (action === 'selectOption') onChange(o.id);
+  };
+
+  const renderInput = ({ inputProps, ...props }) => (
     <TextField
       {...props}
       label={__`inputLabel`}
@@ -43,7 +43,9 @@ const SelectLanguage = ({ value }) => {
   return (
     <Autocomplete
       value={value}
-      options={Object.keys(languages)}
+      onChange={handleChange}
+      sx={{ width: 300 }}
+      options={options}
       autoHighlight
       getOptionLabel={getOptionLabel}
       renderOption={renderOption}
@@ -54,6 +56,7 @@ const SelectLanguage = ({ value }) => {
 
 SelectLanguage.propTypes = {
   value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default SelectLanguage;
