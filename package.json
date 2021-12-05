@@ -39,6 +39,7 @@
     "lorem-ipsum": "^2.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-i18next": "^11.14.3",
     "react-router-dom": "^6.0.2",
     "redux-persist": "^6.0.0",
     "webpack": "^5.64.4"
