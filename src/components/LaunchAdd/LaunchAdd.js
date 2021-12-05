@@ -7,8 +7,12 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import AppBar from '@mui/material/AppBar';
+import { useTranslation } from 'react-i18next';
 
 const LaunchAdd = () => {
+  const { t } = useTranslation();
+  const __ = (k) => t(`components.launchAdd.${k}`);
+
   return (
     <AppBar position="fixed" style={{ top: 'auto', bottom: 40 }}>
       <Box
@@ -21,13 +25,13 @@ const LaunchAdd = () => {
       >
         <SpeedDial
           direction="up"
-          ariaLabel="Add"
+          ariaLabel={__`ariaLabel`}
           icon={<SpeedDialIcon />}
           sx={{ position: 'absolute', bottom: 16, right: 16 }}
         >
           <SpeedDialAction
             icon={<AddBusinessIcon />}
-            tooltipTitle="Business"
+            tooltipTitle={__`businessLabel`}
             tooltipOpen
           />
         </SpeedDial>
