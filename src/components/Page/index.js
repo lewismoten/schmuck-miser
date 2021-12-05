@@ -11,7 +11,7 @@ function Page({ title, children }) {
   return (
     <Fragment>
       <TopBar title={title} />
-      <Box className="App" sx={{ marginBottom: '60px' }}>
+      <Box className="App" sx={{ marginBottom: '60px', marginTop: '10px' }}>
         {children}
       </Box>
       <LaunchAdd></LaunchAdd>

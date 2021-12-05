@@ -7,18 +7,18 @@ const Settings = () => {
   const { t, i18n } = useTranslation();
   const __ = (k) => t(`containers.settings.${k}`);
 
+  const languages = Object.keys(i18n.options.resources);
+
   const language = i18n.resolvedLanguage;
   const setLanguage = (language) => i18n.changeLanguage(language);
 
   return (
     <Page title={__`title`}>
-      <div>
-        {__`language`}: {language}
-      </div>
-      <div>
-        {__`change`}:
-        <SelectLanguage value={language} onChange={setLanguage} />
-      </div>
+      <SelectLanguage
+        value={language}
+        onChange={setLanguage}
+        values={languages}
+      />
     </Page>
   );
 };
