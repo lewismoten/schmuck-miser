@@ -7,6 +7,8 @@ import RootProvider from './components/RootProvider';
 import Theme from './components/Theme';
 import Router from './containers/Router';
 
+import './i18n';
+
 ReactDOM.render(
   <React.StrictMode>
     <ErrorBoundary>
