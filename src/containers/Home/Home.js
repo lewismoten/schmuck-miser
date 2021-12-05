@@ -3,18 +3,16 @@ import Paper from '@mui/material/Paper';
 import Page from '../../components/Page';
 import { LoremIpsum } from 'lorem-ipsum';
 import Typography from '@mui/material/Typography';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const lorem = new LoremIpsum();
 
 const Home = () => {
   const { t } = useTranslation();
+  const __ = (k) => t(`containers.home.${k}`);
 
   return (
-    <Page title={t('page.title')}>
-      <Trans i18nKey="page.header">
-        This <div>is</div> an example.
-      </Trans>
+    <Page title={__`title`}>
       <Paper>
         {lorem
           .generateParagraphs(10)

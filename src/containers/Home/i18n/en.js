@@ -1,5 +1,5 @@
 const i18n = {
-  title: 'Settings',
+  title: 'Home',
 };
 
 export default i18n;
