@@ -6,8 +6,11 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import LoadingButton from '@mui/lab/LoadingButton';
 import * as ioActions from '../../state/io/actions';
 import * as ioSelectors from '../../state/io/selectors';
+import { useTranslation } from 'react-i18next';
 
 const Io = () => {
+  const { t } = useTranslation();
+  const __ = (k) => t(`containers.io.${k}`);
   const dispatch = useDispatch();
   const isDownloading = useSelector(ioSelectors.isDownloading);
   const isUploading = useSelector(ioSelectors.isUploading);
@@ -29,7 +32,7 @@ const Io = () => {
     dispatch(ioActions.upload({ file }));
   };
   return (
-    <Page title="I/O">
+    <Page title={__`title`}>
       <LoadingButton
         loading={isDownloading}
         startIcon={<FileDownloadIcon />}
@@ -37,7 +40,7 @@ const Io = () => {
         loadingPosition="start"
         onClick={onClickDownload}
       >
-        Download
+        {__`downloadButton`}
       </LoadingButton>
       <LoadingButton
         loading={isUploading}
@@ -46,7 +49,7 @@ const Io = () => {
         loadingPosition="start"
         component="label"
       >
-        Upload
+        {__`uploadButton`}
         <input ref={fileRef} type="file" hidden onChange={onChangeFile} />
       </LoadingButton>
     </Page>
