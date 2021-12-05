@@ -7,10 +7,14 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SaveIcon from '@mui/icons-material/Save';
+import { useTranslation } from 'react-i18next';
 
 const BottomBar = () => {
   let navigate = useNavigate();
   let location = useLocation();
+
+  const { t } = useTranslation();
+  const __ = (k) => t(`components.page.bottomBar.${k}`);
 
   const [bottomNavigationValue, setBottomNavigationValue] = useState(
     location.pathname
@@ -31,13 +35,21 @@ const BottomBar = () => {
         value={bottomNavigationValue}
         onChange={onChangeBottomNavigation}
       >
-        <BottomNavigationAction label="Home" value="/" icon={<HomeIcon />} />
         <BottomNavigationAction
-          label="Settings"
+          label={__`homeLabel`}
+          value="/"
+          icon={<HomeIcon />}
+        />
+        <BottomNavigationAction
+          label={__`settingsLabel`}
           value="/settings"
           icon={<SettingsIcon />}
         />
-        <BottomNavigationAction label="I/O" value="/io" icon={<SaveIcon />} />
+        <BottomNavigationAction
+          label={__`ioLabel`}
+          value="/io"
+          icon={<SaveIcon />}
+        />
       </BottomNavigation>
     </AppBar>
   );
