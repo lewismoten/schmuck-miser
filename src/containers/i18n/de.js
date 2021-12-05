@@ -1,4 +1,4 @@
-import settings from '../Settings/i18n/en';
+import settings from '../Settings/i18n/de';
 
 const i18n = {
   settings,
