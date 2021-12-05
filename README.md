@@ -67,5 +67,3 @@ So for now, I'm experimenting with material-ui on this project. I'm also focusin
 # Other notes
 
 I'm targeting low transfer rates because I have found myself in large dead zones when visiting family, and my cell phones data plan is limited to 4GB/month. And because I'm interested in performance.
-
-I'm reviewing a few libraries for localization.
