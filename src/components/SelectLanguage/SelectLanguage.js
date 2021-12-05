@@ -7,10 +7,12 @@ import { useTranslation } from 'react-i18next';
 import emoji from '@lewismoten/emoji';
 
 const options = [
-  { id: 'en', label: 'English' },
   { id: 'en-US', label: `${emoji.flagUnitedStates} English (US)` },
-  { id: 'de', label: 'Deutsch' },
+  { id: 'en', label: `${emoji.flagUnitedStates} English` },
+  { id: 'ru', label: `${emoji.flagRussia} русский` },
+  { id: 'de', label: `${emoji.flagGermany} Deutsch` },
 ];
+
 const getOptionLabel = (value) => {
   if (typeof value === 'object' && 'label' in value) return value.label;
   const option = options.find(({ id }) => id === value);
