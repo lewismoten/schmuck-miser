@@ -10,7 +10,14 @@ const options = [
   { id: 'en-US', label: `${emoji.flagUnitedStates} English (US)` },
   { id: 'en', label: `${emoji.flagUnitedStates} English` },
   { id: 'ru', label: `${emoji.flagRussia} русский` },
+  { id: 'es', label: `${emoji.flagSpain} Español` },
+  { id: 'tr', label: `${emoji.flagTurkey} Türk` },
+  { id: 'fa', label: `${emoji.flagIran} فارسی` },
+  { id: 'fr', label: `${emoji.flagFrance} Fransızca` },
   { id: 'de', label: `${emoji.flagGermany} Deutsch` },
+  { id: 'ja', label: `${emoji.flagJapan} 日本` },
+  { id: 'vi', label: `${emoji.flagVietnam} Tiếng Việt` },
+  { id: 'zh', label: `${emoji.flagChina} 中国人` },
 ];
 
 const getOptionLabel = (value) => {
