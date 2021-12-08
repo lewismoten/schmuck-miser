@@ -1,6 +1,7 @@
 /* eslint-env node */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = () => {
   const config = {
@@ -11,7 +12,17 @@ module.exports = () => {
       filename: '[name].js',
       path: path.resolve(__dirname, '../docs'),
     },
-    plugins: [new HtmlWebpackPlugin()],
+    plugins: [
+      new HtmlWebpackPlugin(),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: './src/locales',
+            to: 'locales',
+          },
+        ],
+      }),
+    ],
     module: {
       rules: [{ test: /\.css$/i, use: ['style-loader', 'css-loader'] }],
     },

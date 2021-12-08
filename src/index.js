@@ -7,7 +7,7 @@ import RootProvider from './components/RootProvider';
 import Theme from './components/Theme';
 import Router from './containers/Router';
 
-import './locales';
+import './i18n';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,0 +1,31 @@
+{
+  "containers": {
+    "home": {
+      "title": "Home"
+    },
+    "settings": {
+      "title": "Settings"
+    },
+    "io": {
+      "title": "I/O",
+      "downloadButton": "Download",
+      "uploadButton": "Upload"
+    }
+  },
+  "components": {
+    "selectLanguage": {
+      "inputLabel": "Choose a language"
+    },
+    "page": {
+      "bottomBar": {
+        "homeLabel": "Home",
+        "settingsLabel": "Settings",
+        "ioLabel": "I/O"
+      }
+    },
+    "launchAdd": {
+      "ariaLabel": "Add",
+      "businessLabel": "Business"
+    }
+  }
+}

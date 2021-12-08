@@ -1,12 +1,12 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import Backend from 'i18next-http-backend';
 
-import de from './de';
-import ru from './ru';
-import enUS from './en-US';
+export const languages = ['en', 'en-US', 'de', 'ru'];
 
 i18n
+  .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
@@ -18,12 +18,6 @@ i18n
     },
     interpolation: {
       escapeValue: false,
-    },
-    resources: {
-      'en-US': enUS,
-      en: enUS,
-      de,
-      ru,
     },
   });
 
