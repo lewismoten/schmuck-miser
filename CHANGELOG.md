@@ -1,16 +1,25 @@
 # Changelog
 
-## Unreleased
+## [Unreleased]
+
+### Changed
 
 - Performance loading translations
 
-# 1.0.2
+## [1.0.2] 2021-12-05
 
-- Choose between US English, German, and Russian
-- Add localization
-- Performance of how code is chunked
+### Added
 
-# 1.0.1
+- Localization for EN-US, DE, RU
+- Language switcher in settings
+
+### Changed
+
+- Performance loading in smaller chunks
+
+## [1.0.1] 2021-12-04
+
+### Added
 
 - Import/Export global state as json
 - Persist state in local storage
