@@ -13,4 +13,7 @@ module.exports = {
     sourceType: 'module',
     ecmaVersion: 2021,
   },
+  globals: {
+    process: true,
+  },
 };
