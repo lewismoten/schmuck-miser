@@ -1,33 +1,31 @@
 {
-  "translation": {
-    "containers": {
-      "home": {
-        "title": "Heim"
-      },
-      "settings": {
-        "title": "Instellingen"
-      },
-      "io": {
-        "title": "I/O",
-        "downloadButton": "Herunterladen",
-        "uploadButton": "Hochladen"
+  "containers": {
+    "home": {
+      "title": "Heim"
+    },
+    "settings": {
+      "title": "Instellingen"
+    },
+    "io": {
+      "title": "I/O",
+      "downloadButton": "Herunterladen",
+      "uploadButton": "Hochladen"
+    }
+  },
+  "components": {
+    "selectLanguage": {
+      "inputLabel": "Kies een taal"
+    },
+    "page": {
+      "bottomBar": {
+        "homeLabel": "Heim",
+        "settingsLabel": "Einstellungen",
+        "ioLabel": "I/O"
       }
     },
-    "components": {
-      "selectLanguage": {
-        "inputLabel": "Kies een taal"
-      },
-      "page": {
-        "bottomBar": {
-          "homeLabel": "Heim",
-          "settingsLabel": "Einstellungen",
-          "ioLabel": "I/O"
-        }
-      },
-      "launchAdd": {
-        "ariaLabel": "Hinzufügen",
-        "businessLabel": "Unternehmen"
-      }
+    "launchAdd": {
+      "ariaLabel": "Hinzufügen",
+      "businessLabel": "Unternehmen"
     }
   }
 }
