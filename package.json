@@ -44,7 +44,7 @@
     "react-i18next": "^11.14.3",
     "react-router-dom": "^6.0.2",
     "redux-persist": "^6.0.0",
-    "webpack": "^5.64.4"
+    "webpack": "^5.65.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
