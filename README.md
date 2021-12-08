@@ -30,7 +30,7 @@ At the moment, most of the work is targeting underlying architecture in how thin
   - Energy usage on EV, Cryptocurrency Miners, and solar panel output
   - Art Investments
   - Assets
-  - Vehicles and upkeep/maintenance
+  - Vehicles and total cost of ownership
   - Mortgage and equity
   - Loans, Credit Cards, and other forms of debt
   - Cash rewards
