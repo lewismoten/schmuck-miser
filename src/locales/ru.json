@@ -1,0 +1,33 @@
+{
+  "translation": {
+    "containers": {
+      "home": {
+        "title": "Дом"
+      },
+      "settings": {
+        "title": "Настройки"
+      },
+      "io": {
+        "title": "Ввод, вывод",
+        "downloadButton": "Скачать",
+        "uploadButton": "Загрузить"
+      }
+    },
+    "components": {
+      "selectLanguage": {
+        "inputLabel": "Выберите язык"
+      },
+      "page": {
+        "bottomBar": {
+          "homeLabel": "Дом",
+          "settingsLabel": "Настройки",
+          "ioLabel": "Ввод, вывод"
+        }
+      },
+      "launchAdd": {
+        "ariaLabel": "Добавлять",
+        "businessLabel": "Бизнес"
+      }
+    }
+  }
+}

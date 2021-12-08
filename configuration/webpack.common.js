@@ -16,7 +16,7 @@ module.exports = () => {
       rules: [{ test: /\.css$/i, use: ['style-loader', 'css-loader'] }],
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.json'],
     },
   };
   return config;
