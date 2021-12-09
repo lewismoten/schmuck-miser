@@ -5,6 +5,14 @@
 ### Changed
 
 - Performance loading translations
+- List of language names in both native and current language
+- Display of native language names in rtl/ltr order
+
+### Added
+
+- Support for right to left languages
+- Completed Top 10 Translations ES, FA, FR, JA, TR, VI, ZH
+- Translation for Klingon TLH
 
 ## [1.0.2] 2021-12-05
 
