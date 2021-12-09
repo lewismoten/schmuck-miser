@@ -1,5 +1,11 @@
 {
-  "language": "English",
+  "__META": {
+    "code": "en",
+    "name": {
+      "native": "English",
+      "english": "English"
+    }
+  },
   "containers": {
     "home": {
       "title": "Home"

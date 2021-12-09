@@ -46,13 +46,13 @@ const SelectLanguage = ({ value, onChange }) => {
   const renderOption = (props, option) => {
     const label = __(`${option}.label`);
     let native = __(`${option}.native`);
-    if (label === native || native === t('language')) {
+    if (label === native || native === t('__META.name.native')) {
       native = '';
     }
 
     return (
       <Box sx={{ display: 'flex' }} {...props}>
-        <Box sx={{ width: '100%' }}>{label}</Box>
+        <Box sx={{ width: '50%' }}>{label}</Box>
         <Box sx={{ flexShrink: 0 }}>{native}</Box>
       </Box>
     );
