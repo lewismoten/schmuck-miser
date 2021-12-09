@@ -1,0 +1,31 @@
+{
+  "containers": {
+    "home": {
+      "title": "Accueil"
+    },
+    "settings": {
+      "title": "Paramètres"
+    },
+    "io": {
+      "title": "Transfert",
+      "downloadButton": "Télécharger",
+      "uploadButton": "Télécharger"
+    }
+  },
+  "components": {
+    "selectLanguage": {
+      "inputLabel": "Choisissez une langue"
+    },
+    "page": {
+      "bottomBar": {
+        "homeLabel": "Accueil",
+        "settingsLabel": "Paramètres",
+        "ioLabel": "Transfert"
+      }
+    },
+    "launchAdd": {
+      "ariaLabel": "Ajouter",
+      "businessLabel": "Entreprise"
+    }
+  }
+}
