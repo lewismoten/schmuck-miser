@@ -13,6 +13,7 @@ export const languages = [
   'fa',
   'tlh',
   'fr',
+  'ja',
 ];
 
 i18n

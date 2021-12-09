@@ -1,0 +1,31 @@
+{
+  "containers": {
+    "home": {
+      "title": "家"
+    },
+    "settings": {
+      "title": "設定"
+    },
+    "io": {
+      "title": "転送",
+      "downloadButton": "ダウンロード",
+      "uploadButton": "アップロード"
+    }
+  },
+  "components": {
+    "selectLanguage": {
+      "inputLabel": "言語を選択してください"
+    },
+    "page": {
+      "bottomBar": {
+        "homeLabel": "家",
+        "settingsLabel": "設定",
+        "ioLabel": "転送"
+      }
+    },
+    "launchAdd": {
+      "ariaLabel": "新しく追加する...",
+      "businessLabel": "ビジネス"
+    }
+  }
+}
