@@ -6,7 +6,7 @@ import RootFallback from './components/RootFallback';
 import RootProvider from './components/RootProvider';
 import Theme from './components/Theme';
 import Router from './containers/Router';
-
+import Localization from './components/Localization';
 import './i18n';
 
 ReactDOM.render(
@@ -14,12 +14,16 @@ ReactDOM.render(
     <ErrorBoundary>
       <Suspense fallback={<RootFallback loading="root provider" />}>
         <RootProvider>
-          <Suspense fallback={<RootFallback loading="theme" />}>
-            <Theme>
-              <Suspense fallback={<RootFallback loading="router" />}>
-                <Router />
+          <Suspense fallback={<RootFallback loading="localization" />}>
+            <Localization>
+              <Suspense fallback={<RootFallback loading="theme" />}>
+                <Theme>
+                  <Suspense fallback={<RootFallback loading="router" />}>
+                    <Router />
+                  </Suspense>
+                </Theme>
               </Suspense>
-            </Theme>
+            </Localization>
           </Suspense>
         </RootProvider>
       </Suspense>
