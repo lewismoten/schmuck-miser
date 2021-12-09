@@ -34,7 +34,7 @@ const renderOption = (props, option) => (
   </Box>
 );
 
-const SelectLanguage = ({ value, values, onChange }) => {
+const SelectLanguage = ({ value, onChange }) => {
   const { t } = useTranslation();
   const __ = (k) => t(`components.selectLanguage.${k}`);
 
@@ -50,13 +50,6 @@ const SelectLanguage = ({ value, values, onChange }) => {
     />
   );
 
-  let restrictedOptions = options;
-  if (values) {
-    restrictedOptions = restrictedOptions.filter(({ id }) =>
-      values.includes(id)
-    );
-  }
-
   const selectedOption = options.find(({ id }) => id === value);
 
   return (
@@ -64,7 +57,7 @@ const SelectLanguage = ({ value, values, onChange }) => {
       value={selectedOption}
       onChange={handleChange}
       sx={{ width: 300 }}
-      options={restrictedOptions}
+      options={options}
       autoHighlight
       getOptionLabel={getOptionLabel}
       renderOption={renderOption}
@@ -75,7 +68,6 @@ const SelectLanguage = ({ value, values, onChange }) => {
 
 SelectLanguage.propTypes = {
   value: PropTypes.string,
-  values: PropTypes.array,
   onChange: PropTypes.func,
 };
 
