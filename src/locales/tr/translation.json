@@ -1,0 +1,31 @@
+{
+  "containers": {
+    "home": {
+      "title": "Ev"
+    },
+    "settings": {
+      "title": "Ayarlar"
+    },
+    "io": {
+      "title": "Giriş / Çıkış",
+      "downloadButton": "İndirmek",
+      "uploadButton": "Yüklemek"
+    }
+  },
+  "components": {
+    "selectLanguage": {
+      "inputLabel": "Bir dil seçin"
+    },
+    "page": {
+      "bottomBar": {
+        "homeLabel": "Ev",
+        "settingsLabel": "Ayarlar",
+        "ioLabel": "Giriş / Çıkış"
+      }
+    },
+    "launchAdd": {
+      "ariaLabel": "Ekle",
+      "businessLabel": "İşletme"
+    }
+  }
+}
