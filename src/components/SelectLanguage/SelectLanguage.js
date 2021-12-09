@@ -17,7 +17,7 @@ const options = [
   { id: 'de', label: 'Deutsch' },
   { id: 'ja', label: '日本' },
   { id: 'vi', label: 'Tiếng Việt' },
-  { id: 'zh', label: '中国人' },
+  { id: 'zh', label: '简体中文' },
   { id: 'tlh', label: 'tlhIngan Hol' },
 ];
 

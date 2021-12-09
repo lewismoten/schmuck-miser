@@ -1,0 +1,31 @@
+{
+  "containers": {
+    "home": {
+      "title": "首页"
+    },
+    "settings": {
+      "title": "设置"
+    },
+    "io": {
+      "title": "输入输出",
+      "downloadButton": "下载",
+      "uploadButton": "上传"
+    }
+  },
+  "components": {
+    "selectLanguage": {
+      "inputLabel": "选择语言"
+    },
+    "page": {
+      "bottomBar": {
+        "homeLabel": "首页",
+        "settingsLabel": "设置",
+        "ioLabel": "输入输出"
+      }
+    },
+    "launchAdd": {
+      "ariaLabel": "添加一个新",
+      "businessLabel": "商业"
+    }
+  }
+}

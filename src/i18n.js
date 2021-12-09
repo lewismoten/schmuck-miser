@@ -15,6 +15,7 @@ export const languages = [
   'fr',
   'ja',
   'vi',
+  'zh',
 ];
 
 i18n
