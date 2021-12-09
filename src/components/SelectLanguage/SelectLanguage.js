@@ -49,11 +49,19 @@ const SelectLanguage = ({ value, onChange }) => {
     if (label === native || native === t('__META.name.native')) {
       native = '';
     }
+    let textAlign;
+    if (option === 'fa') {
+      textAlign = 'right';
+    } else {
+      if (document.body.dir === 'rtl') {
+        textAlign = 'left';
+      }
+    }
 
     return (
       <Box sx={{ display: 'flex' }} {...props}>
         <Box sx={{ width: '50%' }}>{label}</Box>
-        <Box sx={{ flexShrink: 0 }}>{native}</Box>
+        <Box sx={{ width: '50%', textAlign }}>{native}</Box>
       </Box>
     );
   };
