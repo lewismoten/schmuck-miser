@@ -1,0 +1,31 @@
+{
+  "containers": {
+    "home": {
+      "title": "Hogar"
+    },
+    "settings": {
+      "title": "Ajustes"
+    },
+    "io": {
+      "title": "H/O",
+      "downloadButton": "Descargar",
+      "uploadButton": "Subir"
+    }
+  },
+  "components": {
+    "selectLanguage": {
+      "inputLabel": "Elige un idioma"
+    },
+    "page": {
+      "bottomBar": {
+        "homeLabel": "Hogar",
+        "settingsLabel": "Ajustes",
+        "ioLabel": "H/O"
+      }
+    },
+    "launchAdd": {
+      "ariaLabel": "Agregar",
+      "businessLabel": "Negocio"
+    }
+  }
+}
