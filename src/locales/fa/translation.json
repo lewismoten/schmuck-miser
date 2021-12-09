@@ -1,0 +1,31 @@
+{
+  "containers": {
+    "home": {
+      "title": "صفحه اصلی"
+    },
+    "settings": {
+      "title": "تنظیمات"
+    },
+    "io": {
+      "title": "ورودی / خروجی",
+      "downloadButton": "دانلود",
+      "uploadButton": "بارگذاری"
+    }
+  },
+  "components": {
+    "selectLanguage": {
+      "inputLabel": "یک زبان را انتخاب کنید"
+    },
+    "page": {
+      "bottomBar": {
+        "homeLabel": "صفحه اصلی",
+        "settingsLabel": "تنظیمات",
+        "ioLabel": "ورودی / خروجی"
+      }
+    },
+    "launchAdd": {
+      "ariaLabel": "اضافه کردن",
+      "businessLabel": "کسب و کار"
+    }
+  }
+}
