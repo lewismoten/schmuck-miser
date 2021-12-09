@@ -1,0 +1,31 @@
+{
+  "containers": {
+    "home": {
+      "title": "Trang chủ"
+    },
+    "settings": {
+      "title": "cài đặt"
+    },
+    "io": {
+      "title": "Truyền dữ liệu",
+      "downloadButton": "Tải xuống",
+      "uploadButton": "Tải lên"
+    }
+  },
+  "components": {
+    "selectLanguage": {
+      "inputLabel": "thay đổi ngôn ngữ"
+    },
+    "page": {
+      "bottomBar": {
+        "homeLabel": "Trang chủ",
+        "settingsLabel": "cài đặt",
+        "ioLabel": "Truyền dữ liệu"
+      }
+    },
+    "launchAdd": {
+      "ariaLabel": "Thêm một ...",
+      "businessLabel": "Kinh doanh"
+    }
+  }
+}

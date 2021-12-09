@@ -14,6 +14,7 @@ export const languages = [
   'tlh',
   'fr',
   'ja',
+  'vi',
 ];
 
 i18n
