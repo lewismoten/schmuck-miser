@@ -1,0 +1,31 @@
+{
+  "containers": {
+    "home": {
+      "title": "juH"
+    },
+    "settings": {
+      "title": "choH"
+    },
+    "io": {
+      "title": "Qay",
+      "downloadButton": "SuD",
+      "uploadButton": "nob"
+    }
+  },
+  "components": {
+    "selectLanguage": {
+      "inputLabel": "Hol"
+    },
+    "page": {
+      "bottomBar": {
+        "homeLabel": "juH",
+        "settingsLabel": "choH",
+        "ioLabel": "Qay"
+      }
+    },
+    "launchAdd": {
+      "ariaLabel": "boq",
+      "businessLabel": "lan"
+    }
+  }
+}

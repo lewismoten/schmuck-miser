@@ -18,6 +18,7 @@ const options = [
   { id: 'ja', label: '日本' },
   { id: 'vi', label: 'Tiếng Việt' },
   { id: 'zh', label: '中国人' },
+  { id: 'tlh', label: 'tlhIngan Hol' },
 ];
 
 const getOptionLabel = (value) => {
