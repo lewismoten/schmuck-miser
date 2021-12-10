@@ -1,4 +1,11 @@
 {
+  "__META": {
+    "code": "es",
+    "name": {
+      "native": "Español",
+      "english": "Spanish"
+    }
+  },
   "containers": {
     "home": {
       "title": "Hogar"
@@ -14,7 +21,55 @@
   },
   "components": {
     "selectLanguage": {
-      "inputLabel": "Elige un idioma"
+      "inputLabel": "Elige un idioma",
+      "en-US": {
+        "label": "Inglés de Estados Unidos",
+        "native": "English (US)"
+      },
+      "en": {
+        "label": "English",
+        "native": "Inglés"
+      },
+      "de": {
+        "label": "Alemán",
+        "native": "Deutsch"
+      },
+      "es": {
+        "label": "Español",
+        "native": "Español"
+      },
+      "ru": {
+        "label": "Ruso",
+        "native": "русский"
+      },
+      "tr": {
+        "label": "Turco",
+        "native": "Türk"
+      },
+      "fa": {
+        "label": "Farsi",
+        "native": "فارسی"
+      },
+      "fr": {
+        "label": "Francés",
+        "native": "Fransızca"
+      },
+      "ja": {
+        "label": "Japonés",
+        "native": "日本"
+      },
+      "vi": {
+        "label": "vietnamita",
+        "native": "Tiếng Việt"
+      },
+      "zh": {
+        "label": "Chino simplificado",
+        "native": "简体中文"
+      },
+      "tlh": {
+        "label": "El idioma klingon",
+        "native": "tlhIngan Hol"
+      }
     },
     "page": {
       "bottomBar": {
