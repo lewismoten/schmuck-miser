@@ -11,7 +11,8 @@ import { useTranslation } from 'react-i18next';
 
 const LaunchAdd = () => {
   const { t } = useTranslation();
-  const __ = (k) => t(`components.launchAdd.${k}`);
+  const ariaLabel = t('components.launchAdd.ariaLabel');
+  const businessLabel = t('components.launchAdd.businessLabel');
 
   return (
     <AppBar position="fixed" style={{ top: 'auto', bottom: 40 }}>
@@ -25,13 +26,13 @@ const LaunchAdd = () => {
       >
         <SpeedDial
           direction="up"
-          ariaLabel={__`ariaLabel`}
+          ariaLabel={ariaLabel}
           icon={<SpeedDialIcon />}
           sx={{ position: 'absolute', bottom: 16, right: 16 }}
         >
           <SpeedDialAction
             icon={<AddBusinessIcon />}
-            tooltipTitle={__`businessLabel`}
+            tooltipTitle={businessLabel}
             tooltipOpen
           />
         </SpeedDial>

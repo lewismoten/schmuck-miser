@@ -10,11 +10,14 @@ import { useTranslation } from 'react-i18next';
 
 const Io = () => {
   const { t } = useTranslation();
-  const __ = (k) => t(`containers.io.${k}`);
   const dispatch = useDispatch();
   const isDownloading = useSelector(ioSelectors.isDownloading);
   const isUploading = useSelector(ioSelectors.isUploading);
   const fileRef = useRef();
+
+  const title = t('containers.io.title');
+  const downloadButton = t('containers.io.downloadButton');
+  const uploadButton = t('containers.io.uploadButton');
 
   useEffect(() => {
     if (!isUploading && !!fileRef.current) fileRef.current.value = '';
@@ -32,7 +35,7 @@ const Io = () => {
     dispatch(ioActions.upload({ file }));
   };
   return (
-    <Page title={__`title`}>
+    <Page title={title}>
       <LoadingButton
         loading={isDownloading}
         startIcon={<FileDownloadIcon />}
@@ -40,7 +43,7 @@ const Io = () => {
         loadingPosition="start"
         onClick={onClickDownload}
       >
-        {__`downloadButton`}
+        {downloadButton}
       </LoadingButton>
       <LoadingButton
         loading={isUploading}
@@ -49,7 +52,7 @@ const Io = () => {
         loadingPosition="start"
         component="label"
       >
-        {__`uploadButton`}
+        {uploadButton}
         <input ref={fileRef} type="file" hidden onChange={onChangeFile} />
       </LoadingButton>
     </Page>

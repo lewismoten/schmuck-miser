@@ -22,7 +22,8 @@ const options = [
 
 const SelectLanguage = ({ value, onChange }) => {
   const { t } = useTranslation();
-  const __ = (k) => t(`components.selectLanguage.${k}`);
+  const inputLabel = t('components.selectLanguage.inputLabel');
+  const isRightAligned = document.body.dir === 'rtl';
 
   const handleChange = (e, option, action) => {
     if (action === 'selectOption') onChange(option);
@@ -31,7 +32,7 @@ const SelectLanguage = ({ value, onChange }) => {
   const renderInput = ({ inputProps, ...props }) => (
     <TextField
       {...props}
-      label={__('inputLabel')}
+      label={inputLabel}
       inputProps={{ ...inputProps, autoComplete: 'new-password' }}
     />
   );
@@ -40,22 +41,20 @@ const SelectLanguage = ({ value, onChange }) => {
 
   const getOptionLabel = (option) => {
     if (option === '') return '';
-    return __(`${option}.label`);
+    return t(`components.selectLanguage.${option}.label`);
   };
 
   const renderOption = (props, option) => {
-    const label = __(`${option}.label`);
-    let native = __(`${option}.native`);
+    const label = t(`components.selectLanguage.${option}.label`);
+    let native = t(`components.selectLanguage.${option}.native`);
     if (label === native || native === t('__META.name.native')) {
       native = '';
     }
     let textAlign;
-    if (option === 'fa') {
+    if (!isRightAligned && option === 'fa') {
       textAlign = 'right';
-    } else {
-      if (document.body.dir === 'rtl') {
-        textAlign = 'left';
-      }
+    } else if (isRightAligned && option !== 'fa') {
+      textAlign = 'left';
     }
 
     return (

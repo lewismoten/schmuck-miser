@@ -9,10 +9,10 @@ const lorem = new LoremIpsum();
 
 const Home = () => {
   const { t } = useTranslation();
-  const __ = (k) => t(`containers.home.${k}`);
+  const title = t('containers.home.title');
 
   return (
-    <Page title={__`title`}>
+    <Page title={title}>
       <Paper>
         {lorem
           .generateParagraphs(10)

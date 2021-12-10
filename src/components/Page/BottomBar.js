@@ -14,7 +14,9 @@ const BottomBar = () => {
   let location = useLocation();
 
   const { t } = useTranslation();
-  const __ = (k) => t(`components.page.bottomBar.${k}`);
+  const homeLabel = t('components.page.bottomBar.homeLabel');
+  const settingsLabel = t('components.page.bottomBar.settingsLabel');
+  const ioLabel = t('components.page.bottomBar.ioLabel');
 
   const [bottomNavigationValue, setBottomNavigationValue] = useState(
     location.pathname
@@ -36,17 +38,17 @@ const BottomBar = () => {
         onChange={onChangeBottomNavigation}
       >
         <BottomNavigationAction
-          label={__`homeLabel`}
+          label={homeLabel}
           value="/"
           icon={<HomeIcon />}
         />
         <BottomNavigationAction
-          label={__`settingsLabel`}
+          label={settingsLabel}
           value="/settings"
           icon={<SettingsIcon />}
         />
         <BottomNavigationAction
-          label={__`ioLabel`}
+          label={ioLabel}
           value="/io"
           icon={<SaveIcon />}
         />

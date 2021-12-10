@@ -5,13 +5,13 @@ import { useTranslation } from 'react-i18next';
 
 const Settings = () => {
   const { t, i18n } = useTranslation();
-  const __ = (k) => t(`containers.settings.${k}`);
+  const title = t('containers.settings.title');
 
   const language = i18n.resolvedLanguage;
   const setLanguage = (language) => i18n.changeLanguage(language);
 
   return (
-    <Page title={__`title`}>
+    <Page title={title}>
       <SelectLanguage value={language} onChange={setLanguage} />
     </Page>
   );
