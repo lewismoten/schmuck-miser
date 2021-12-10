@@ -1,6 +1,6 @@
 {
   "name": "schmuck-miser",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "Tool to track my finances and sometimes foolish decisions",
   "scripts": {
