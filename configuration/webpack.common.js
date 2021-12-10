@@ -2,7 +2,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = () => {
   const config = {
@@ -15,14 +14,6 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin(),
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: './src/locales',
-            to: 'locales',
-          },
-        ],
-      }),
       new webpack.EnvironmentPlugin(['NODE_ENV']),
     ],
     module: {
