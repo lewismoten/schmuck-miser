@@ -1,4 +1,11 @@
 {
+  "__META": {
+    "code": "fr",
+    "name": {
+      "native": "Fransızca",
+      "english": "French"
+    }
+  },
   "containers": {
     "home": {
       "title": "Accueil"
@@ -14,7 +21,55 @@
   },
   "components": {
     "selectLanguage": {
-      "inputLabel": "Choisissez une langue"
+      "inputLabel": "Choisissez une langue",
+      "en-US": {
+        "label": "Anglais des États-Unis",
+        "native": "English (US)"
+      },
+      "en": {
+        "label": "Anglais",
+        "native": "English"
+      },
+      "de": {
+        "label": "Allemand",
+        "native": "Deutsch"
+      },
+      "es": {
+        "label": "Espagnol",
+        "native": "Español"
+      },
+      "ru": {
+        "label": "russe",
+        "native": "русский"
+      },
+      "tr": {
+        "label": "Turc",
+        "native": "Türk"
+      },
+      "fa": {
+        "label": "Farsi",
+        "native": "فارسی"
+      },
+      "fr": {
+        "label": "Fransızca",
+        "native": "Fransızca"
+      },
+      "ja": {
+        "label": "Japonais",
+        "native": "日本"
+      },
+      "vi": {
+        "label": "Vietnamien",
+        "native": "Tiếng Việt"
+      },
+      "zh": {
+        "label": "Chinois (simplifié)",
+        "native": "简体中文"
+      },
+      "tlh": {
+        "label": "La langue klingonne",
+        "native": "tlhIngan Hol"
+      }
     },
     "page": {
       "bottomBar": {
