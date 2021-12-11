@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import accounts from './accounts';
 import io from './io';
+import settings from './settings';
 import * as actions from './actions';
 
 const INITIAL_STATE = {};
 const reducers = {
   accounts,
   io,
+  settings,
 };
 
 const sliceReducers = combineReducers(reducers);
