@@ -21,6 +21,9 @@ module.exports = () => {
     },
     resolve: {
       extensions: ['.js', '.jsx', '.json'],
+      fallback: {
+        crypto: require.resolve('crypto-browserify'),
+      },
     },
   };
   return config;
