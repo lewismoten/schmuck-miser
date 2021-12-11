@@ -35,6 +35,7 @@
     "@mui/icons-material": "^5.2.1",
     "@mui/lab": "^5.0.0-alpha.59",
     "@mui/material": "^5.2.3",
+    "crypto-browserify": "^3.12.0",
     "file-saver": "^2.0.5",
     "i18next": "^21.6.0",
     "i18next-browser-languagedetector": "^6.1.2",
