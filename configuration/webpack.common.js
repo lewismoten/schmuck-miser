@@ -15,6 +15,9 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin(),
       new webpack.EnvironmentPlugin(['NODE_ENV']),
+      new webpack.ProvidePlugin({
+        Buffer: ['buffer', 'Buffer'],
+      }),
     ],
     module: {
       rules: [{ test: /\.css$/i, use: ['style-loader', 'css-loader'] }],
