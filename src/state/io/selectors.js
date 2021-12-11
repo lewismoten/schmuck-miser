@@ -27,5 +27,16 @@ export const hasUploaded = createSelector(
 );
 
 export const fileName = () => 'file.json';
-export const fileData = (state) => JSON.stringify(state, null, '  ');
+export const fileData = (state) =>
+  JSON.stringify(
+    Object.keys(state)
+      .filter((key) => /^[a-z]/.test(key))
+      .reduce((keep, key) => {
+        keep[key] = state[key];
+        return keep;
+      }, {}),
+    null,
+    '  '
+  );
+
 export const fileType = () => 'application/json';
