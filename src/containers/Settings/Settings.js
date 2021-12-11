@@ -12,7 +12,6 @@ const Settings = () => {
 
   const language = i18n.resolvedLanguage;
   const setLanguage = (language) => {
-    i18n.changeLanguage(language);
     dispatch(actions.changeLanguage(language));
   };
 
