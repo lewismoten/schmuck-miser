@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- persistence of chosen language
+
 ## [1.0.3] 2021-12-10
 
 ### Changed
