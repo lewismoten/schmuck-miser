@@ -8,8 +8,11 @@ export const tfaNewSecret = createSelector(
   slice,
   ({ tfaNewSecret }) => tfaNewSecret
 );
-export const tfaNewQr = createSelector(tfaNewSecret, (tfaNewSecret) => {
-  if (tfaNewSecret) {
-    return otpCode.getDataUrl();
-  }
-});
+export const otpHasNewSecret = createSelector(
+  tfaNewSecret,
+  (tfaNewSecret) => !!tfaNewSecret
+);
+
+export const tfaNewQr = createSelector(otpHasNewSecret, (hasSecret) =>
+  hasSecret ? otpCode.getDataUrl() : undefined
+);
