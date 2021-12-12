@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as selectors from '../../state/security/selectors';
 import * as actions from '../../state/security/actions';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import { useTranslation } from 'react-i18next';
 
 const Security2FASetup = () => {
   const dispatch = useDispatch();
@@ -47,17 +48,31 @@ const SetupOtpButton = () => {
 };
 
 const Otp = () => {
+  const dispatch = useDispatch();
   const hasOtpDraft = useSelector(selectors.hasOtpDraft);
   const has2FA = useSelector(selectors.has2FA);
+  const { t } = useTranslation();
+  const label = t('components.security2FASetup.otp.label');
+  const helperText = t('components.security2FASetup.otp.helperText');
+
   if (!(hasOtpDraft || has2FA)) return null;
 
-  const digits = [...new Array(6)];
+  const onChange = ({ target: { value } }) => {
+    if (value.length === 6) {
+      dispatch(actions.verifyOtp(value));
+    }
+  };
+
   return (
-    <Box>
-      {digits.map((v, i) => (
-        <TextField key={i} color="warning" />
-      ))}
-    </Box>
+    <FormControl>
+      <TextField
+        helperText={helperText}
+        label={label}
+        color="warning"
+        type="number"
+        onChange={onChange}
+      />
+    </FormControl>
   );
 };
 export default Security2FASetup;
