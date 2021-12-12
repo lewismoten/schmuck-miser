@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import * as otpCode from './otpCode';
 
 const slice = ({ security = {} } = {}) => security;
 
@@ -7,4 +8,8 @@ export const tfaNewSecret = createSelector(
   slice,
   ({ tfaNewSecret }) => tfaNewSecret
 );
-export const tfaNewQr = createSelector(slice, ({ tfaNewQr }) => tfaNewQr);
+export const tfaNewQr = createSelector(tfaNewSecret, (tfaNewSecret) => {
+  if (tfaNewSecret) {
+    return otpCode.getDataUrl();
+  }
+});
