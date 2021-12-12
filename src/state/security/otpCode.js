@@ -9,7 +9,14 @@ export function* render(user, service, secret) {
 
   const uri = authenticator.keyuri(user, service, secret);
 
-  dataUrl = yield call(QRCode.toDataURL, uri);
+  const options = {
+    color: {
+      dark: '#FFF',
+      light: '#0000',
+    },
+  };
+
+  dataUrl = yield call(QRCode.toDataURL, uri, options);
 }
 
 export const getDataUrl = () => dataUrl;
