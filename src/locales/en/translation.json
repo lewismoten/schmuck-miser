@@ -78,7 +78,7 @@
       },
       "remove": "Disable 2FA",
       "setup": "Setup 2FA",
-      "cancelSetup": "Cancel 2FA Setup"
+      "cancel": "Cancel"
     },
     "page": {
       "bottomBar": {
