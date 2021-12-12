@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as selectors from '../../state/security/selectors';
 import * as actions from '../../state/security/actions';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 const Security2FASetup = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ const Security2FASetup = () => {
       <p>Has 2FA: {has2FA ? 'Yes' : 'No'}</p>
       <p>New Secret: {otpDraft}</p>
       <QRCode />
+      <Otp />
       <SetupOtpButton />
     </div>
   );
@@ -41,5 +44,20 @@ const SetupOtpButton = () => {
 
   if (has2FA || hasOtpDraft) return null;
   return <Button onClick={onClick}>Setup 2FA</Button>;
+};
+
+const Otp = () => {
+  const hasOtpDraft = useSelector(selectors.hasOtpDraft);
+  const has2FA = useSelector(selectors.has2FA);
+  if (!(hasOtpDraft || has2FA)) return null;
+
+  const digits = [...new Array(6)];
+  return (
+    <Box>
+      {digits.map((v, i) => (
+        <TextField key={i} color="warning" />
+      ))}
+    </Box>
+  );
 };
 export default Security2FASetup;
