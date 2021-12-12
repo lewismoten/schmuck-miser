@@ -28,7 +28,7 @@ function* onVerifyOtp(action) {
   }
 }
 
-function* onInitialize() {
+function* cleanup() {
   yield call(otpCode.clear);
 }
 
@@ -36,6 +36,7 @@ export default function* handleRequestSaga() {
   yield all([
     takeEvery(actions.setup2FA.TRIGGER, onSetup2fa),
     takeEvery(actions.verifyOtp.TRIGGER, onVerifyOtp),
-    takeEvery(actions.initialize.TRIGGER, onInitialize),
+    takeEvery(actions.initialize.TRIGGER, cleanup),
+    takeEvery(actions.uninitialize.TRIGGER, cleanup),
   ]);
 }

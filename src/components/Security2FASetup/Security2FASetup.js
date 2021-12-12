@@ -13,15 +13,14 @@ import { useTranslation } from 'react-i18next';
 
 const Security2FASetup = () => {
   const dispatch = useDispatch();
-  const has2FA = useSelector(selectors.has2FA);
 
   useEffect(() => {
     dispatch(actions.initialize());
+    return () => dispatch(actions.uninitialize());
   }, []);
 
   return (
     <div>
-      <p>Has 2FA: {has2FA ? 'Yes' : 'No'}</p>
       <QRCode />
       <Otp />
       <SetupOtpButton />

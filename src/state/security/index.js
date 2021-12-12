@@ -7,7 +7,7 @@ const initialState = {
   otpDraft: undefined,
 };
 
-const onInitialize = produce((draft) => {
+const cleanup = produce((draft) => {
   delete draft.otpDraft;
 });
 
@@ -29,7 +29,8 @@ export default handleActions(
     [actions.remove2FA.TRIGGER]: onRemove2FA,
     [actions.setup2FA.REQUEST]: onSetup2FARequest,
     [actions.setup2FA.SUCCESS]: onSetup2FASuccess,
-    [actions.initialize.TRIGGER]: onInitialize,
+    [actions.initialize.TRIGGER]: cleanup,
+    [actions.uninitialize.TRIGGER]: cleanup,
   },
   initialState
 );
