@@ -50,13 +50,15 @@ const SetupOtpButton = () => {
   const dispatch = useDispatch();
   const hasOtpDraft = useSelector(selectors.hasOtpDraft);
   const has2FA = useSelector(selectors.has2FA);
+  const { t } = useTranslation();
+  const label = t('components.security2FASetup.setup');
 
   const onClick = () => {
     dispatch(actions.setup2FA());
   };
 
   if (has2FA || hasOtpDraft) return null;
-  return <Button onClick={onClick}>Setup 2FA</Button>;
+  return <Button onClick={onClick}>{label}</Button>;
 };
 
 const DisableOtpButton = () => {
