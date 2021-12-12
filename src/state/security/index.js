@@ -11,6 +11,10 @@ const onInitialize = produce((draft) => {
   delete draft.otpDraft;
 });
 
+const onRemove2FA = produce((draft) => {
+  draft.otpDraft = undefined;
+  draft.otp = undefined;
+});
 const onSetup2FARequest = produce((draft, action) => {
   const { secret } = action.payload;
   draft.otpDraft = secret;
@@ -22,6 +26,7 @@ const onSetup2FASuccess = produce((draft) => {
 
 export default handleActions(
   {
+    [actions.remove2FA.TRIGGER]: onRemove2FA,
     [actions.setup2FA.REQUEST]: onSetup2FARequest,
     [actions.setup2FA.SUCCESS]: onSetup2FASuccess,
     [actions.initialize.TRIGGER]: onInitialize,

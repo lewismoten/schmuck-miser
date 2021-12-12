@@ -25,6 +25,7 @@ const Security2FASetup = () => {
       <QRCode />
       <Otp />
       <SetupOtpButton />
+      <DisableOtpButton />
     </div>
   );
 };
@@ -57,6 +58,20 @@ const SetupOtpButton = () => {
 
   if (has2FA || hasOtpDraft) return null;
   return <Button onClick={onClick}>Setup 2FA</Button>;
+};
+
+const DisableOtpButton = () => {
+  const dispatch = useDispatch();
+  const has2FA = useSelector(selectors.has2FA);
+  const { t } = useTranslation();
+  const label = t('components.security2FASetup.remove');
+
+  const onClick = () => {
+    dispatch(actions.remove2FA());
+  };
+
+  if (!has2FA) return null;
+  return <Button onClick={onClick}>{label}</Button>;
 };
 
 const Otp = () => {
