@@ -15,6 +15,17 @@ function* onSetup2fa() {
   yield put(actions.setup2FA.request({ secret }));
 }
 
+function* onVerifyOtp(action) {
+  const secret = yield select(selectors.otpDraft);
+  const token = action.payload;
+  const isValid = authenticator.check(token, secret);
+  if (isValid) {
+    yield put(actions.setup2FA.success());
+  } else {
+    yield put(actions.setup2FA.failure());
+  }
+}
+
 function* onInitialize() {
   yield call(otpCode.clear);
 }
@@ -22,6 +33,7 @@ function* onInitialize() {
 export default function* handleRequestSaga() {
   yield all([
     takeEvery(actions.setup2FA.TRIGGER, onSetup2fa),
+    takeEvery(actions.verifyOtp.TRIGGER, onVerifyOtp),
     takeEvery(actions.initialize.TRIGGER, onInitialize),
   ]);
 }
