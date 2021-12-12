@@ -3,22 +3,23 @@ import produce from 'immer';
 import * as actions from './actions';
 
 const initialState = {
-  has2FA: false,
-  tfaNewSecret: undefined,
+  otp: undefined,
+  otpDraft: undefined,
 };
 
-const onSetup2fa = produce((draft) => {
-  draft.has2FA = !draft.has2FA;
+const onInitialize = produce((draft) => {
+  delete draft.otpDraft;
 });
-const onSetup2faRequest = produce((draft, action) => {
+
+const onSetup2FARequest = produce((draft, action) => {
   const { secret } = action.payload;
-  draft.tfaNewSecret = secret;
+  draft.otpDraft = secret;
 });
 
 export default handleActions(
   {
-    [actions.setup2FA.TRIGGER]: onSetup2fa,
-    [actions.setup2FA.REQUEST]: onSetup2faRequest,
+    [actions.setup2FA.REQUEST]: onSetup2FARequest,
+    [actions.initialize.TRIGGER]: onInitialize,
   },
   initialState
 );

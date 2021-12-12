@@ -3,16 +3,10 @@ import * as otpCode from './otpCode';
 
 const slice = ({ security = {} } = {}) => security;
 
-export const has2FA = createSelector(slice, ({ has2FA }) => !!has2FA);
-export const tfaNewSecret = createSelector(
-  slice,
-  ({ tfaNewSecret }) => tfaNewSecret
-);
-export const otpHasNewSecret = createSelector(
-  tfaNewSecret,
-  (tfaNewSecret) => !!tfaNewSecret
-);
+export const has2FA = createSelector(slice, ({ otp }) => !!otp);
+export const otpDraft = createSelector(slice, ({ otpDraft }) => otpDraft);
+export const hasOtpDraft = createSelector(otpDraft, (otpDraft) => !!otpDraft);
 
-export const tfaNewQr = createSelector(otpHasNewSecret, (hasSecret) =>
-  hasSecret ? otpCode.getDataUrl() : undefined
+export const otpImage = createSelector(hasOtpDraft, (hasDraft) =>
+  hasDraft ? otpCode.getDataUrl() : undefined
 );

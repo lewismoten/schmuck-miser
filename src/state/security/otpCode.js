@@ -14,4 +14,8 @@ export function* render(user, service, secret) {
 
 export const getDataUrl = () => dataUrl;
 
-export default { render, getDataUrl };
+export const clear = () => {
+  dataUrl = undefined;
+};
+
+export default { render, getDataUrl, clear };
