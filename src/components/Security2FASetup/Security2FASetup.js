@@ -15,7 +15,7 @@ const Security2FASetup = () => {
 
   return (
     <div>
-      <p>Has 2FAp: {has2FA ? 'Yes' : 'No'}</p>
+      <p>Has 2FA: {has2FA ? 'Yes' : 'No'}</p>
       <p>New Secret: {otpDraft}</p>
       <QRCode />
       <SetupOtpButton />
