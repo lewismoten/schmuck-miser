@@ -11,9 +11,8 @@ const onSetup2fa = produce((draft) => {
   draft.has2FA = !draft.has2FA;
 });
 const onSetup2faRequest = produce((draft, action) => {
-  const { secret, qr } = action.payload;
+  const { secret } = action.payload;
   draft.tfaNewSecret = secret;
-  draft.tfaNewQr = qr;
 });
 
 export default handleActions(
