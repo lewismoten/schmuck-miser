@@ -5,12 +5,15 @@ import * as actions from '../../state/security/actions';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 
 const Security2FASetup = () => {
   const dispatch = useDispatch();
   const has2FA = useSelector(selectors.has2FA);
-  const otpDraft = useSelector(selectors.otpDraft);
 
   useEffect(() => {
     dispatch(actions.initialize());
@@ -19,7 +22,6 @@ const Security2FASetup = () => {
   return (
     <div>
       <p>Has 2FA: {has2FA ? 'Yes' : 'No'}</p>
-      <p>New Secret: {otpDraft}</p>
       <QRCode />
       <Otp />
       <SetupOtpButton />
@@ -29,9 +31,19 @@ const Security2FASetup = () => {
 
 const QRCode = () => {
   const hasOtpDraft = useSelector(selectors.hasOtpDraft);
-  const otpImage = useSelector(selectors.otpImage);
+  const image = useSelector(selectors.otpImage);
+  const otpDraft = useSelector(selectors.otpDraft);
   if (!hasOtpDraft) return null;
-  return <img src={otpImage} />;
+  return (
+    <Card vaiant="outlined">
+      <CardMedia component="img" src={image} />
+      <CardContent>
+        <Typography align="center" varient="body2">
+          {otpDraft}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
 };
 
 const SetupOtpButton = () => {
