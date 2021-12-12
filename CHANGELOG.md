@@ -5,6 +5,7 @@
 ### Added
 
 - persistence of chosen language
+- 2FA with QR code (wip)
 
 ## [1.0.3] 2021-12-10
 
