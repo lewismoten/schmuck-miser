@@ -17,7 +17,7 @@ const onSetup2FARequest = produce((draft, action) => {
 });
 const onSetup2FASuccess = produce((draft) => {
   draft.otp = draft.otpDraft;
-  delete draft.otpDraft;
+  draft.otpDraft = undefined;
 });
 
 export default handleActions(

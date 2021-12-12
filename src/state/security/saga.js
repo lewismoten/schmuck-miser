@@ -16,13 +16,15 @@ function* onSetup2fa() {
 }
 
 function* onVerifyOtp(action) {
-  const secret = yield select(selectors.otpDraft);
+  const secret = yield select(selectors.otp);
   const token = action.payload;
   const isValid = authenticator.check(token, secret);
+  const hasOtpDraft = yield select(selectors.hasOtpDraft);
   if (isValid) {
-    yield put(actions.setup2FA.success());
+    if (hasOtpDraft) yield put(actions.setup2FA.success());
+    yield put(actions.verifyOtp.success());
   } else {
-    yield put(actions.setup2FA.failure());
+    yield put(actions.verifyOtp.failure());
   }
 }
 
