@@ -36,7 +36,13 @@ export default function* handleRequestSaga() {
   yield all([
     takeEvery(actions.setup2FA.TRIGGER, onSetup2fa),
     takeEvery(actions.verifyOtp.TRIGGER, onVerifyOtp),
-    takeEvery(actions.initialize.TRIGGER, cleanup),
-    takeEvery(actions.uninitialize.TRIGGER, cleanup),
+    takeEvery(
+      [
+        actions.initialize.TRIGGER,
+        actions.uninitialize.TRIGGER,
+        actions.cancelSetup2FA.TRIGGER,
+      ],
+      cleanup
+    ),
   ]);
 }

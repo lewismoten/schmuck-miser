@@ -31,6 +31,7 @@ export default handleActions(
     [actions.setup2FA.SUCCESS]: onSetup2FASuccess,
     [actions.initialize.TRIGGER]: cleanup,
     [actions.uninitialize.TRIGGER]: cleanup,
+    [actions.cancelSetup2FA.TRIGGER]: cleanup,
   },
   initialState
 );
