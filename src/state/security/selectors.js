@@ -17,3 +17,11 @@ export const hasOtpDraft = createSelector(otpDraft, (otpDraft) => !!otpDraft);
 export const otpImage = createSelector(hasOtpDraft, (hasDraft) =>
   hasDraft ? otpCode.getDataUrl() : undefined
 );
+
+export const showOtpInput = createSelector(
+  slice,
+  has2FA,
+  hasOtpDraft,
+  ({ otpVerified }, has2FA, hasOtpDraft) =>
+    hasOtpDraft || (has2FA && !otpVerified)
+);

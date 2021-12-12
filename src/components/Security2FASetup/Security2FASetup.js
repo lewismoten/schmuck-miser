@@ -91,13 +91,12 @@ const DisableOtpButton = () => {
 
 const Otp = () => {
   const dispatch = useDispatch();
-  const hasOtpDraft = useSelector(selectors.hasOtpDraft);
-  const has2FA = useSelector(selectors.has2FA);
+  const showOtpInput = useSelector(selectors.showOtpInput);
   const { t } = useTranslation();
   const label = t('components.security2FASetup.otp.label');
   const helperText = t('components.security2FASetup.otp.helperText');
 
-  if (!(hasOtpDraft || has2FA)) return null;
+  if (!showOtpInput) return null;
 
   const onChange = ({ target: { value } }) => {
     if (value.length === 6) {
