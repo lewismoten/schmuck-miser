@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as selectors from '../../state/otp/selectors';
 import * as actions from '../../state/otp/actions';
@@ -91,6 +91,7 @@ const DisableOtpButton = () => {
 
 const Otp = () => {
   const dispatch = useDispatch();
+  const [value, setValue] = useState('');
   const isSettingUp = useSelector(selectors.isSettingUp);
   const { t } = useTranslation();
   const label = t('otp.settings.fields.token');
@@ -101,6 +102,9 @@ const Otp = () => {
   const onChange = ({ target: { value: token } }) => {
     if (token.length === 6) {
       dispatch(actions.verify({ token }));
+      setValue('');
+    } else {
+      setValue(token);
     }
   };
 
@@ -112,6 +116,7 @@ const Otp = () => {
         color="warning"
         type="number"
         onChange={onChange}
+        value={value}
       />
     </FormControl>
   );
