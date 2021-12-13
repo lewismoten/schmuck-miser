@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import * as selectors from '../../state/security/selectors';
-import * as actions from '../../state/security/actions';
+import * as selectors from '../../state/otp/selectors';
+import * as actions from '../../state/otp/actions';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
@@ -31,16 +31,16 @@ const Security2FASetup = () => {
 };
 
 const QRCode = () => {
-  const hasOtpDraft = useSelector(selectors.hasOtpDraft);
-  const image = useSelector(selectors.otpImage);
-  const otpDraft = useSelector(selectors.otpDraft);
-  if (!hasOtpDraft) return null;
+  const isSettingUp = useSelector(selectors.isSettingUp);
+  const setupImage = useSelector(selectors.setupImage);
+  const secret = useSelector(selectors.secret);
+  if (!isSettingUp) return null;
   return (
     <Card vaiant="outlined">
-      <CardMedia component="img" src={image} />
+      <CardMedia component="img" src={setupImage} />
       <CardContent>
         <Typography align="center" varient="body2">
-          {otpDraft}
+          {secret}
         </Typography>
       </CardContent>
     </Card>
@@ -49,58 +49,58 @@ const QRCode = () => {
 
 const SetupOtpButton = () => {
   const dispatch = useDispatch();
-  const hasOtpDraft = useSelector(selectors.hasOtpDraft);
-  const has2FA = useSelector(selectors.has2FA);
+  const isSettingUp = useSelector(selectors.isSettingUp);
+  const isEnabled = useSelector(selectors.isEnabled);
   const { t } = useTranslation();
-  const label = t('components.security2FASetup.setup');
+  const label = t('otp.settings.actions.setup');
 
   const onClick = () => {
-    dispatch(actions.setup2FA());
+    dispatch(actions.setup());
   };
 
-  if (has2FA || hasOtpDraft) return null;
+  if (isEnabled || isSettingUp) return null;
   return <Button onClick={onClick}>{label}</Button>;
 };
 const CancelSetupOtpButton = () => {
   const dispatch = useDispatch();
-  const hasOtpDraft = useSelector(selectors.hasOtpDraft);
+  const isSettingUp = useSelector(selectors.isSettingUp);
   const { t } = useTranslation();
-  const label = t('components.security2FASetup.cancel');
+  const label = t('otp.settings.actions.cancelSetup');
 
   const onClick = () => {
-    dispatch(actions.cancelSetup2FA());
+    dispatch(actions.cancelSetup());
   };
 
-  if (!hasOtpDraft) return null;
+  if (!isSettingUp) return null;
   return <Button onClick={onClick}>{label}</Button>;
 };
 
 const DisableOtpButton = () => {
   const dispatch = useDispatch();
-  const has2FA = useSelector(selectors.has2FA);
+  const isEnabled = useSelector(selectors.isEnabled);
   const { t } = useTranslation();
-  const label = t('components.security2FASetup.remove');
+  const label = t('otp.settings.actions.disable');
 
   const onClick = () => {
-    dispatch(actions.remove2FA());
+    dispatch(actions.disable());
   };
 
-  if (!has2FA) return null;
+  if (!isEnabled) return null;
   return <Button onClick={onClick}>{label}</Button>;
 };
 
 const Otp = () => {
   const dispatch = useDispatch();
-  const showOtpInput = useSelector(selectors.showOtpInput);
+  const isSettingUp = useSelector(selectors.isSettingUp);
   const { t } = useTranslation();
-  const label = t('components.security2FASetup.otp.label');
-  const helperText = t('components.security2FASetup.otp.helperText');
+  const label = t('otp.settings.fields.token');
+  const helperText = t('otp.settings.fields.tokenHelp');
 
-  if (!showOtpInput) return null;
+  if (!isSettingUp) return null;
 
-  const onChange = ({ target: { value } }) => {
-    if (value.length === 6) {
-      dispatch(actions.verifyOtp(value));
+  const onChange = ({ target: { value: token } }) => {
+    if (token.length === 6) {
+      dispatch(actions.verify({ token }));
     }
   };
 

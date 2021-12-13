@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 import accounts from './accounts';
 import io from './io';
 import settings from './settings';
-import security from './security';
+import otp from './otp';
 import * as actions from './actions';
 
 const INITIAL_STATE = {};
 const reducers = {
-  security,
+  otp,
   accounts,
   io,
   settings,

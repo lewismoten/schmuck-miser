@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import Page from '../../components/Page';
 import SelectLanguage from '../../components/SelectLanguage';
-import Security2FASetup from '../../components/Security2FASetup';
+import OtpSettings from '../../components/OtpSettings';
 import { useTranslation } from 'react-i18next';
 import * as actions from '../../state/settings/actions';
 
@@ -19,7 +19,7 @@ const Settings = () => {
   return (
     <Page title={title}>
       <SelectLanguage value={language} onChange={setLanguage} />
-      <Security2FASetup />
+      <OtpSettings />
     </Page>
   );
 };
