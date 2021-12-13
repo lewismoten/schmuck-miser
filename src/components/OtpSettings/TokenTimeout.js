@@ -4,16 +4,21 @@ import { useTranslation } from 'react-i18next';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
+const SECOND = 1000;
 const LIMIT = 30;
-const WARN = 4;
+const INTERVAL = (LIMIT * SECOND) / 100;
 
 const TokenTimeout = () => {
   const { t } = useTranslation();
   const intervalRef = useRef();
 
-  const [seconds, setSeconds] = useState(getSeconds());
+  const [
+    { secondsRemaining, value, progressColor, textColor },
+    setDetails,
+  ] = useState(getDetails());
+
   useEffect(() => {
-    intervalRef.current = window.setInterval(onInterval, 250);
+    intervalRef.current = window.setInterval(onInterval, INTERVAL);
     return () => {
       window.clearInterval(intervalRef.current);
       intervalRef.current = undefined;
@@ -21,22 +26,11 @@ const TokenTimeout = () => {
   }, []);
 
   const onInterval = () => {
-    if (intervalRef.current) setSeconds(getSeconds());
+    if (intervalRef.current) setDetails(getDetails());
   };
 
-  const secondsPassed = seconds % LIMIT;
-  const secondsLeft = LIMIT - secondsPassed;
-
-  const percent = secondsPassed / LIMIT;
-  let value = percent * 100;
-  if (seconds >= LIMIT) value *= -1;
-
-  const progressColor = percent > 1 - WARN / LIMIT ? 'warning' : undefined;
-  const textColor =
-    percent > 1 - WARN / LIMIT ? 'warning.main' : 'text.secondary';
-
   const label = t('otp.settings.fields.secondsRemaining', {
-    seconds: secondsLeft,
+    seconds: secondsRemaining,
   });
 
   return (
@@ -66,6 +60,30 @@ const TokenTimeout = () => {
   );
 };
 
-const getSeconds = () => new Date().getSeconds();
+const getDetails = () => {
+  const WARN = 4;
+
+  const now = new Date();
+  const s = now.getSeconds();
+  const ms = now.getMilliseconds();
+  const secondsPassed = s % LIMIT;
+  const secondsRemaining = LIMIT - secondsPassed;
+  const percent = (secondsPassed * SECOND + ms) / (LIMIT * SECOND);
+  const isHalfPast = s >= LIMIT;
+  const isExpiring = percent > 1 - WARN / LIMIT;
+
+  let value = Math.floor(percent * 100);
+  if (isHalfPast) value += 100;
+
+  const progressColor = isExpiring ? 'warning' : undefined;
+  const textColor = isExpiring ? 'warning.main' : 'text.secondary';
+
+  return {
+    secondsRemaining,
+    value,
+    progressColor,
+    textColor,
+  };
+};
 
 export default TokenTimeout;
