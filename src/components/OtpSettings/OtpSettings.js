@@ -130,6 +130,7 @@ const Timeout = () => {
   const LIMIT = 30;
   const WARN = 4;
 
+  const { t } = useTranslation();
   const intervalRef = useRef();
 
   const [seconds, setSeconds] = useState(new Date().getSeconds());
@@ -156,6 +157,10 @@ const Timeout = () => {
   const textColor =
     percent > 1 - WARN / LIMIT ? 'warning.main' : 'text.secondary';
 
+  const label = t('otp.settings.fields.secondsRemaining', {
+    seconds: secondsLeft,
+  });
+
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress
@@ -176,7 +181,7 @@ const Timeout = () => {
         }}
       >
         <Typography variant="caption" component="div" color={textColor}>
-          {secondsLeft}s
+          {label}
         </Typography>
       </Box>
     </Box>
