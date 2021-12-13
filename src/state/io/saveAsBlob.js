@@ -12,7 +12,6 @@ const saveAsBlob = (data, type, name) => {
       emitter({ type: REQUEST });
       import(/* webpackChunkName: 'file-saver' */ 'file-saver')
         .then(({ default: fileSaver }) => {
-          console.log(Object.keys(fileSaver));
           fileSaver.saveAs(new Blob([data], { type }), name);
           emitter({ type: SUCCESS });
         })
