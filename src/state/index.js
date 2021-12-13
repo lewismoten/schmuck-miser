@@ -1,16 +1,20 @@
 import { combineReducers } from 'redux';
+
 import accounts from './accounts';
 import io from './io';
-import settings from './settings';
 import otp from './otp';
+import settings from './settings';
+import theme from './theme';
+
 import * as actions from './actions';
 
 const INITIAL_STATE = {};
 const reducers = {
-  otp,
   accounts,
   io,
+  otp,
   settings,
+  theme,
 };
 
 const sliceReducers = combineReducers(reducers);

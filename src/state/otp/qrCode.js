@@ -4,19 +4,10 @@ import QRCode from 'qrcode';
 
 let dataUrl;
 
-export function* render(user, service, secret) {
+export function* render(user, service, secret, imageOptions) {
   dataUrl = undefined;
-
   const uri = authenticator.keyuri(user, service, secret);
-
-  const options = {
-    color: {
-      dark: '#FFF',
-      light: '#0000',
-    },
-  };
-
-  dataUrl = yield call(QRCode.toDataURL, uri, options);
+  dataUrl = yield call(QRCode.toDataURL, uri, imageOptions);
 }
 
 export const getDataUrl = () => dataUrl;
