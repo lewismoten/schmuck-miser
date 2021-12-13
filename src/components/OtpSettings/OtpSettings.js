@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as selectors from '../../state/otp/selectors';
 import * as actions from '../../state/otp/actions';
@@ -130,30 +130,27 @@ const Timeout = () => {
   const LIMIT = 30;
   const WARN = 4;
 
-  const [intervalId, setIntervalId] = useState();
-  const [seconds, setSeconds] = useState(new Date().getSeconds());
+  const intervalRef = useRef();
 
+  const [seconds, setSeconds] = useState(new Date().getSeconds());
   useEffect(() => {
-    setIntervalId(window.setInterval(onInterval, 250));
+    intervalRef.current = window.setInterval(onInterval, 250);
     return () => {
-      window.clearInterval(intervalId);
+      window.clearInterval(intervalRef.current);
+      intervalRef.current = undefined;
     };
   }, []);
 
   const onInterval = () => {
-    setSeconds(() => new Date().getSeconds());
+    if (intervalRef.current) setSeconds(new Date().getSeconds());
   };
 
   const secondsPassed = seconds % LIMIT;
   const secondsLeft = LIMIT - secondsPassed;
 
   const percent = secondsPassed / LIMIT;
-  let value;
-  if (seconds >= LIMIT) {
-    value = Math.floor((1 - percent) * 100);
-  } else {
-    value = Math.floor(percent * 100);
-  }
+  let value = Math.floor(percent * 100);
+  if (seconds >= LIMIT) value *= -1;
 
   const progressColor = percent > 1 - WARN / LIMIT ? 'warning' : undefined;
   const textColor =
