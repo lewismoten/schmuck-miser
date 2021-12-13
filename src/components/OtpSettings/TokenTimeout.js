@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 
 const SECOND = 1000;
 const LIMIT = 30;
@@ -12,10 +12,9 @@ const TokenTimeout = () => {
   const { t } = useTranslation();
   const intervalRef = useRef();
 
-  const [
-    { secondsRemaining, value, progressColor, textColor },
-    setDetails,
-  ] = useState(getDetails());
+  const [{ secondsRemaining, value, progressColor }, setDetails] = useState(
+    getDetails()
+  );
 
   useEffect(() => {
     intervalRef.current = window.setInterval(onInterval, INTERVAL);
@@ -34,27 +33,14 @@ const TokenTimeout = () => {
   });
 
   return (
-    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+    <Box sx={sx.wrapper}>
       <CircularProgress
         variant="determinate"
         value={value}
         color={progressColor}
       />
-      <Box
-        sx={{
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          position: 'absolute',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Typography variant="caption" component="div" color={textColor}>
-          {label}
-        </Typography>
+      <Box sx={sx.chipWrapper}>
+        <Chip label={label} sx={sx.chip} size="small" />
       </Box>
     </Box>
   );
@@ -76,14 +62,27 @@ const getDetails = () => {
   if (isHalfPast) value += 100;
 
   const progressColor = isExpiring ? 'warning' : undefined;
-  const textColor = isExpiring ? 'warning.main' : 'text.secondary';
 
   return {
     secondsRemaining,
     value,
     progressColor,
-    textColor,
   };
+};
+
+const sx = {
+  wrapper: { position: 'relative', display: 'inline-flex' },
+  chipWrapper: {
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  chip: { borderRadius: '50%', width: '100%', height: '100%' },
 };
 
 export default TokenTimeout;
