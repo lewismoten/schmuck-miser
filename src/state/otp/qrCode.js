@@ -1,19 +1,4 @@
-import { call } from 'redux-saga/effects';
-import { authenticator } from '@otplib/preset-default';
-import QRCode from 'qrcode';
-
-let dataUrl;
-
-export function* render(user, service, secret, imageOptions) {
-  dataUrl = undefined;
-  const uri = authenticator.keyuri(user, service, secret);
-  dataUrl = yield call(QRCode.toDataURL, uri, imageOptions);
-}
-
-export const getDataUrl = () => dataUrl;
-
-export const clear = () => {
-  dataUrl = undefined;
-};
-
-export default { render, getDataUrl, clear };
+let _code;
+export const setCode = (code) => (_code = code);
+export const getCode = () => _code;
+export const resetCode = () => (_code = undefined);

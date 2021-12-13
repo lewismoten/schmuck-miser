@@ -51,5 +51,5 @@ export const setupImage = createSelector(
   isSettingUp,
   imageOptions,
   (secret, isSettingUp) =>
-    isSettingUp && !!secret ? qrCode.getDataUrl() : undefined
+    isSettingUp && !!secret ? qrCode.getCode() : undefined
 );
