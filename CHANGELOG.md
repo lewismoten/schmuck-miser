@@ -5,7 +5,7 @@
 ### Added
 
 - persistence of chosen language
-- #1 2FA with QR code and otp seconds remaining (wip)
+- GH-1 2FA with QR code and otp seconds remaining (wip)
 
 ## [1.0.3] 2021-12-10
 
