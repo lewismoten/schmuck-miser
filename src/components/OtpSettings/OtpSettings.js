@@ -10,6 +10,8 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const Security2FASetup = () => {
   const dispatch = useDispatch();
@@ -21,20 +23,25 @@ const Security2FASetup = () => {
 
   return (
     <div>
-      <QRCode />
-      <Otp />
       <SetupOtpButton />
-      <CancelSetupOtpButton />
       <DisableOtpButton />
+      <Setup>
+        <QRCode />
+        <Otp />
+        <CancelSetupOtpButton />
+        <Timeout />
+      </Setup>
     </div>
   );
 };
 
-const QRCode = () => {
+const Setup = ({ children }) => {
   const isSettingUp = useSelector(selectors.isSettingUp);
+  return isSettingUp ? children : null;
+};
+const QRCode = () => {
   const setupImage = useSelector(selectors.setupImage);
   const secret = useSelector(selectors.secret);
-  if (!isSettingUp) return null;
   return (
     <Card vaiant="outlined">
       <CardMedia component="img" src={setupImage} />
@@ -63,7 +70,6 @@ const SetupOtpButton = () => {
 };
 const CancelSetupOtpButton = () => {
   const dispatch = useDispatch();
-  const isSettingUp = useSelector(selectors.isSettingUp);
   const { t } = useTranslation();
   const label = t('otp.settings.actions.cancelSetup');
 
@@ -71,7 +77,6 @@ const CancelSetupOtpButton = () => {
     dispatch(actions.cancelSetup());
   };
 
-  if (!isSettingUp) return null;
   return <Button onClick={onClick}>{label}</Button>;
 };
 
@@ -121,4 +126,64 @@ const Otp = () => {
     </FormControl>
   );
 };
+const Timeout = () => {
+  const LIMIT = 30;
+  const WARN = 4;
+
+  const [intervalId, setIntervalId] = useState();
+  const [seconds, setSeconds] = useState(new Date().getSeconds());
+
+  useEffect(() => {
+    setIntervalId(window.setInterval(onInterval, 250));
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, []);
+
+  const onInterval = () => {
+    setSeconds(() => new Date().getSeconds());
+  };
+
+  const secondsPassed = seconds % LIMIT;
+  const secondsLeft = LIMIT - secondsPassed;
+
+  const percent = secondsPassed / LIMIT;
+  let value;
+  if (seconds >= LIMIT) {
+    value = Math.floor((1 - percent) * 100);
+  } else {
+    value = Math.floor(percent * 100);
+  }
+
+  const progressColor = percent > 1 - WARN / LIMIT ? 'warning' : undefined;
+  const textColor =
+    percent > 1 - WARN / LIMIT ? 'warning.main' : 'text.secondary';
+
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress
+        variant="determinate"
+        value={value}
+        color={progressColor}
+      />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography variant="caption" component="div" color={textColor}>
+          {secondsLeft}s
+        </Typography>
+      </Box>
+    </Box>
+  );
+};
+
 export default Security2FASetup;
