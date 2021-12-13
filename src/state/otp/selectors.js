@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import * as qrCode from './qrCode';
+import * as cache from './cache';
 import * as themeSelectors from '../theme/selectors';
 
 const slice = ({ otp = {} } = {}) => otp;
@@ -51,5 +51,5 @@ export const setupImage = createSelector(
   isSettingUp,
   imageOptions,
   (secret, isSettingUp) =>
-    isSettingUp && !!secret ? qrCode.getCode() : undefined
+    isSettingUp && !!secret ? cache.getCode() : undefined
 );

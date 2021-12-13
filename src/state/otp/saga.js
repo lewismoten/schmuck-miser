@@ -3,41 +3,37 @@ import * as actions from './actions';
 import * as themeActions from '../theme/actions';
 import * as selectors from './selectors';
 
-import * as qrCode from './qrCode';
-import * as modules from './utils/modules';
+import * as cache from './cache';
+import * as modules from './modules';
 
-function* authenticatorUrl(user, service, secret) {
+function* creatQrCode(user, service, secret) {
+  yield call(cache.resetCode);
   const { authenticator } = yield modules.otplibPresetDefault();
-  return yield call(
+  const data = yield call(
     [authenticator, authenticator.keyuri],
     user,
     service,
     secret
   );
-}
-function* onSetup() {
-  yield call(qrCode.resetCode);
-  const { authenticator } = yield modules.otplib();
-  const secret = authenticator.generateSecret();
   const imageOptions = yield select(selectors.imageOptions);
-  const data = yield authenticatorUrl('me', 'my service', secret);
   const { toDataURL } = yield modules.qrcode();
   const code = yield call(toDataURL, data, imageOptions);
-  yield call(qrCode.setCode, code);
+  yield call(cache.setCode, code);
+}
+function* onSetup() {
+  const isSettingUp = yield select(selectors.isSettingUp);
+  if (!isSettingUp) return;
+  const { authenticator } = yield modules.otplib();
+  const secret = authenticator.generateSecret();
+  yield creatQrCode('me', 'my service', secret);
   yield put(actions.setup.request({ secret }));
 }
 
 function* onThemeChange() {
   const isSettingUp = yield select(selectors.isSettingUp);
   if (!isSettingUp) return;
-  yield call(qrCode.resetCode);
   const secret = yield select(selectors.secret);
-  const imageOptions = yield select(selectors.imageOptions);
-  const data = yield authenticatorUrl('me', 'my service', secret);
-
-  const { toDataURL } = yield modules.qrcode();
-  const code = yield call(toDataURL, data, imageOptions);
-  yield call(qrCode.setCode, code);
+  yield creatQrCode('me', 'my service', secret);
 }
 
 function* onVerify(action) {
@@ -68,7 +64,7 @@ function* onCancelSetup() {
 }
 
 function* cleanup() {
-  yield call(qrCode.resetCode);
+  yield call(cache.resetCode);
 }
 
 export default function* handleRequestSaga() {
