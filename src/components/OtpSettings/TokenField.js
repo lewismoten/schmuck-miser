@@ -31,10 +31,10 @@ const TokenField = () => {
         helperText={helperText}
         label={label}
         color="warning"
-        type="number"
+        type="text"
         onChange={onChange}
         value={value}
-        inputProps={{ autoComplete: 'one-time-code' }}
+        inputProps={{ autoComplete: 'one-time-code', inputMode: 'numeric' }}
       />
     </FormControl>
   );
