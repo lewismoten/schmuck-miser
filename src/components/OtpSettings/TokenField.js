@@ -34,6 +34,7 @@ const TokenField = () => {
         type="number"
         onChange={onChange}
         value={value}
+        inputProps={{ autoComplete: 'one-time-code' }}
       />
     </FormControl>
   );
