@@ -11,7 +11,8 @@
       "actions": {
         "setup": "Setup 2FA",
         "cancelSetup": "Cancel",
-        "disable": "Disable 2FA"
+        "disable": "Disable 2FA",
+        "copySecret": "Copy one-time password setup code"
       },
       "fields": {
         "token": "OTP",

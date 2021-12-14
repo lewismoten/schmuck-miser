@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'copy-to-clipboard';
+import { useTranslation } from 'react-i18next';
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import IconButton from '@mui/material/IconButton';
 
 const CopyButton = ({ text }) => {
+  const { t } = useTranslation();
+  const label = t('otp.settings.actions.copySecret');
+
   const onClick = () => {
-    copy(text, {
-      debug: true,
-      format: 'text/plain',
-      message: 'Press #{key} to copy',
-    });
+    copy(text, { format: 'text/plain' });
   };
 
   return (
@@ -19,7 +19,7 @@ const CopyButton = ({ text }) => {
       onClick={onClick}
       color="primary"
       size="small"
-      aria-label="copy 2FA secret key"
+      aria-label={label}
     >
       <ContentCopyIcon />
     </IconButton>
