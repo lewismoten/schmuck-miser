@@ -24,6 +24,7 @@ export const imageOptions = createSelector(
   themeSelectors.palette,
   (palette) => {
     return {
+      margin: 0,
       color: {
         light: ensureColorAsHex(palette.background.paper),
         dark: ensureColorAsHex(palette.primary.main),

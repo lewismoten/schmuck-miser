@@ -13,6 +13,7 @@ const QRCode = () => {
         alignItems: 'center',
         justifyContent: 'center',
         display: 'flex',
+        padding: '10px',
       }}
     >
       <Avatar
