@@ -10,6 +10,7 @@ import CancelSetupButton from './CancelSetupButton';
 import SetupButton from './SetupButton';
 import DisableButton from './DisableButton';
 import QrCode from './QrCode';
+import Secret from './Secret';
 import TokenField from './TokenField';
 import TokenTimeout from './TokenTimeout';
 
@@ -30,6 +31,7 @@ const Security2FASetup = () => {
       <Setup>
         <Masonry columns={columns}>
           <QrCode />
+          <Secret />
           <TokenField />
           <CancelSetupButton />
           <TokenTimeout />

@@ -1,23 +1,26 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import * as selectors from '../../state/otp/selectors';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
 
 const QRCode = () => {
   const setupImage = useSelector(selectors.setupImage);
-  const secret = useSelector(selectors.secret);
+
   return (
-    <Card vaiant="outlined">
-      <CardMedia component="img" src={setupImage} />
-      <CardContent>
-        <Typography align="center" varient="body2">
-          {secret}
-        </Typography>
-      </CardContent>
-    </Card>
+    <Box
+      sx={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+      }}
+    >
+      <Avatar
+        variant="rounded"
+        src={setupImage}
+        sx={{ width: 200, height: 200 }}
+      />
+    </Box>
   );
 };
 
