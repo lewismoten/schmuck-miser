@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import * as actions from '../../state/otp/actions';
 
+import Masonry from '@mui/lab/Masonry';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import Setup from './Setup';
 import CancelSetupButton from './CancelSetupButton';
 import SetupButton from './SetupButton';
@@ -12,6 +15,8 @@ import TokenTimeout from './TokenTimeout';
 
 const Security2FASetup = () => {
   const dispatch = useDispatch();
+  const isLandscape = useMediaQuery('(orientation: landscape)');
+  const columns = isLandscape ? 2 : 1;
 
   useEffect(() => {
     dispatch(actions.initialize());
@@ -23,10 +28,12 @@ const Security2FASetup = () => {
       <SetupButton />
       <DisableButton />
       <Setup>
-        <QrCode />
-        <TokenField />
-        <CancelSetupButton />
-        <TokenTimeout />
+        <Masonry columns={columns}>
+          <QrCode />
+          <TokenField />
+          <CancelSetupButton />
+          <TokenTimeout />
+        </Masonry>
       </Setup>
     </div>
   );
