@@ -6,6 +6,12 @@ import * as selectors from './selectors';
 import * as cache from './cache';
 import * as modules from './modules';
 
+function* onCopySecret() {
+  const secret = yield select(selectors.secret);
+  const { default: copy } = yield modules.copy();
+  yield call(copy, secret, { format: 'text/plain' });
+}
+
 function* creatQrCode(user, service, secret) {
   yield call(cache.resetCode);
   const { authenticator } = yield modules.otplibPresetDefault();
@@ -72,6 +78,7 @@ export default function* handleRequestSaga() {
     takeEvery(actions.setup.TRIGGER, onSetup),
     takeEvery(actions.verify.TRIGGER, onVerify),
     takeEvery(actions.cancelSetup.TRIGGER, onCancelSetup),
+    takeEvery(actions.copySecret.TRIGGER, onCopySecret),
     takeEvery(themeActions.change.TRIGGER, onThemeChange),
     takeEvery(
       [

@@ -4,3 +4,5 @@ export const otplibPresetDefault = () =>
   import(
     /* webpackChunkName: 'otplib-preset-default' */ '@otplib/preset-default'
   );
+export const copy = () =>
+  import(/* webpackChunkName: 'copy' */ 'copy-to-clipboard');
