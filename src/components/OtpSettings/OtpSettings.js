@@ -33,8 +33,8 @@ const Security2FASetup = () => {
           <QrCode />
           <Secret />
           <TokenField />
-          <CancelSetupButton />
           <TokenTimeout />
+          <CancelSetupButton />
         </Masonry>
       </Setup>
     </div>
