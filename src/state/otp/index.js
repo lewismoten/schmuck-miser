@@ -6,8 +6,17 @@ const initialState = {
   secret: undefined,
   isSettingUp: false,
   isVerified: false,
+
+  timeout: {
+    seconds: 0,
+    percent: 0,
+    color: undefined,
+  },
 };
 
+const onChangeTimeout = produce((draft, action) => {
+  draft.timeout = action.payload;
+});
 const cleanup = produce((draft) => {
   if (draft.isSettingUp) {
     draft.secret = undefined;
@@ -47,6 +56,7 @@ export default handleActions(
     [actions.setup.SUCCESS]: onSetupSuccess,
     [actions.setup.FULFILL]: onSetupFulfill,
     [actions.verify.SUCCESS]: onVerifySuccess,
+    [actions.changeTimeout.TRIGGER]: onChangeTimeout,
     [actions.initialize.TRIGGER]: cleanup,
     [actions.uninitialize.TRIGGER]: cleanup,
     [actions.cancelSetup.TRIGGER]: cleanup,

@@ -54,3 +54,12 @@ export const setupImage = createSelector(
   (secret, isSettingUp) =>
     isSettingUp && !!secret ? cache.getCode() : undefined
 );
+
+export const timeout = createSelector(
+  slice,
+  ({ timeout: { seconds, percent, color } = {} }) => ({
+    seconds,
+    percent,
+    color,
+  })
+);

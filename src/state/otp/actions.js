@@ -9,3 +9,4 @@ export const initialize = build('initialize');
 export const uninitialize = build('uninitialize');
 export const verify = build('verify');
 export const copySecret = build('copy secret');
+export const changeTimeout = build('change timeout');
