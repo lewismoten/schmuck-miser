@@ -9,16 +9,22 @@ import * as selectors from '../../state/otp/selectors';
 const TokenTimeout = () => {
   const { t } = useTranslation();
 
-  const { seconds, percent, color } = useSelector(selectors.timeout);
+  const { seconds, percent, isHalfPast, isExpiring } = useSelector(
+    selectors.timeout
+  );
 
   if (seconds === undefined) return null;
+
   const label = t('otp.settings.fields.secondsRemaining', {
     seconds,
   });
 
+  const value = Math.floor(percent * 100) + (isHalfPast ? 100 : 0);
+  const color = isExpiring ? 'warning' : undefined;
+
   return (
     <Box sx={sx.wrapper}>
-      <CircularProgress variant="determinate" value={percent} color={color} />
+      <CircularProgress variant="determinate" value={value} color={color} />
       <Box sx={sx.chipWrapper}>
         <Chip label={label} sx={sx.chip} size="small" />
       </Box>

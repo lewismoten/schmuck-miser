@@ -2,6 +2,10 @@ import { createSelector } from 'reselect';
 import * as cache from './cache';
 import * as themeSelectors from '../theme/selectors';
 
+const WARN_SECONDS = 4;
+const SECONDS_PER_TOKEN = 30;
+const MS_PER_SECOND = 1000;
+
 const slice = ({ otp = {} } = {}) => otp;
 
 export const secret = createSelector(slice, ({ secret }) => secret);
@@ -57,9 +61,22 @@ export const setupImage = createSelector(
 
 export const timeout = createSelector(
   slice,
-  ({ timeout: { seconds, percent, color } = {} }) => ({
-    seconds,
-    percent,
-    color,
-  })
+  ({ seconds: s, milliseconds: ms }) => {
+    const secondsPassed = s % SECONDS_PER_TOKEN;
+    const secondsRemaining = SECONDS_PER_TOKEN - secondsPassed;
+
+    const percent =
+      (secondsPassed * MS_PER_SECOND + ms) /
+      (SECONDS_PER_TOKEN * MS_PER_SECOND);
+
+    const isHalfPast = s >= SECONDS_PER_TOKEN;
+    const isExpiring = percent > 1 - WARN_SECONDS / SECONDS_PER_TOKEN;
+
+    return {
+      seconds: secondsRemaining,
+      percent,
+      isHalfPast,
+      isExpiring,
+    };
+  }
 );

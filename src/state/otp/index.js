@@ -6,17 +6,16 @@ const initialState = {
   secret: undefined,
   isSettingUp: false,
   isVerified: false,
-
-  timeout: {
-    seconds: 0,
-    percent: 0,
-    color: undefined,
-  },
+  seconds: 0,
+  milliseconds: 0,
 };
 
 const onChangeTimeout = produce((draft, action) => {
-  draft.timeout = action.payload;
+  const { seconds, milliseconds } = action.payload;
+  draft.seconds = seconds;
+  draft.milliseconds = milliseconds;
 });
+
 const cleanup = produce((draft) => {
   if (draft.isSettingUp) {
     draft.secret = undefined;
