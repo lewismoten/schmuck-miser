@@ -5,7 +5,7 @@ import * as selectors from './selectors';
 
 import * as cache from './cache';
 import * as modules from './modules';
-import ticker from './ticker';
+import watchOtpTimer from './watchOtpTimer';
 
 function* onCopySecret() {
   const secret = yield select(selectors.secret);
@@ -35,14 +35,8 @@ function* onSetup() {
   yield creatQrCode('me', 'my service', secret);
   yield put(actions.setup.request({ secret }));
 
-  const channel = yield call(ticker);
-
-  yield takeEvery(channel, onInterval);
+  yield call(watchOtpTimer);
 }
-
-const onInterval = function* (timeout) {
-  yield put(actions.changeTimeout(timeout));
-};
 
 function* onThemeChange() {
   const isSettingUp = yield select(selectors.isSettingUp);
