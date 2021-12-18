@@ -6,6 +6,21 @@
       "english": "The Klingon Language"
     }
   },
+  "otp": {
+    "settings": {
+      "actions": {
+        "setup": "Chel Qan",
+        "cancelSetup": "Mev",
+        "disable": "teq Qan",
+        "copySecret": "ngoq pegh SuD"
+      },
+      "fields": {
+        "token": "ngoq",
+        "tokenHelp": "nob hung pegh",
+        "secondsRemaining": "{{ seconds }}"
+      }
+    }
+  },
   "containers": {
     "home": {
       "title": "juH"
