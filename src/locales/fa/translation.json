@@ -6,6 +6,21 @@
       "english": "Farsi"
     }
   },
+  "otp": {
+    "settings": {
+      "actions": {
+        "setup": "راه اندازی 2FA",
+        "cancelSetup": "لغو کنید",
+        "disable": "2FA را غیر فعال کنید",
+        "copySecret": "کد تنظیم رمز یک بار مصرف را کپی کنید"
+      },
+      "fields": {
+        "token": "OTP",
+        "tokenHelp": "رمز عبور یکبار مصرف (OTP) ایجاد شده توسط برنامه احراز هویت خود را وارد کنید",
+        "secondsRemaining": " ثانیه{{ seconds }}"
+      }
+    }
+  },
   "containers": {
     "home": {
       "title": "صفحه اصلی"
