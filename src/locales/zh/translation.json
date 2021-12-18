@@ -6,6 +6,21 @@
       "english": "Chinese (Simplified)"
     }
   },
+  "otp": {
+    "settings": {
+      "actions": {
+        "setup": "设置 2FA",
+        "cancelSetup": "取消",
+        "disable": "禁用两步验证",
+        "copySecret": "复制一次性密码设定码"
+      },
+      "fields": {
+        "token": "OTP",
+        "tokenHelp": "输入由您的身份验证器应用程序生成的一次性密码 (OTP)",
+        "secondsRemaining": "{{ seconds }}秒"
+      }
+    }
+  },
   "containers": {
     "home": {
       "title": "首页"
