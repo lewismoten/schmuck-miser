@@ -6,6 +6,21 @@
       "english": "Vietnamese"
     }
   },
+  "otp": {
+    "settings": {
+      "actions": {
+        "setup": "Thiết lập 2FA",
+        "cancelSetup": "Hủy bỏ",
+        "disable": "Tắt 2FA",
+        "copySecret": "Sao chép mã thiết lập mật khẩu một lần"
+      },
+      "fields": {
+        "token": "OTP",
+        "tokenHelp": "Nhập Mật khẩu dùng một lần (OTP) được tạo bởi ứng dụng xác thực của bạn",
+        "secondsRemaining": "{{ seconds }} giây"
+      }
+    }
+  },
   "containers": {
     "home": {
       "title": "Trang chủ"
