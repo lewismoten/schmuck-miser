@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import * as selectors from '../../state/otp/selectors';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import QrCode2Icon from '@mui/icons-material/QrCode2';
+import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
+import Fab from '@mui/material/Fab';
 
 const QRCode = () => {
   const setupImage = useSelector(selectors.setupImage);
@@ -17,13 +18,45 @@ const QRCode = () => {
         padding: '10px',
       }}
     >
-      <Avatar
-        variant="rounded"
-        src={setupImage}
-        sx={{ width: 200, height: 200 }}
-      >
-        <QrCode2Icon color="error" sx={{ width: 50, height: 50 }} />
-      </Avatar>
+      <Box sx={{ width: 200, height: 200, position: 'relative' }}>
+        <Avatar
+          variant="rounded"
+          src={setupImage}
+          sx={{
+            position: 'absolute',
+            width: 200,
+            height: 200,
+            zIndex: 9,
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+          }}
+        >
+          <PhotoCameraIcon color="error" />
+        </Avatar>
+        <Box
+          sx={{
+            position: 'absolute',
+            zIndex: 10,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+        >
+          <Fab
+            size="small"
+            sx={{
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            <PhotoCameraIcon />
+          </Fab>
+        </Box>
+      </Box>
     </Box>
   );
 };
