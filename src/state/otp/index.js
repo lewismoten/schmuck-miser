@@ -8,6 +8,8 @@ const initialState = {
   isVerified: false,
   seconds: 0,
   milliseconds: 0,
+  service: 'OTP Demo',
+  user: 'developer',
 };
 
 const onChangeTimeout = produce((draft, action) => {

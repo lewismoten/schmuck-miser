@@ -9,6 +9,8 @@ const MS_PER_SECOND = 1000;
 const slice = ({ otp = {} } = {}) => otp;
 
 export const secret = createSelector(slice, ({ secret }) => secret);
+export const user = createSelector(slice, ({ user }) => user);
+export const service = createSelector(slice, ({ service }) => service);
 export const isSettingUp = createSelector(
   slice,
   ({ isSettingUp }) => !!isSettingUp

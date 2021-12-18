@@ -13,7 +13,9 @@ function* onCopySecret() {
   yield call(copy, secret, { format: 'text/plain' });
 }
 
-function* creatQrCode(user, service, secret) {
+function* creatQrCode(secret) {
+  const service = yield select(selectors.service);
+  const user = yield select(selectors.user);
   yield call(cache.resetCode);
   const { authenticator } = yield modules.otplibPresetDefault();
   const data = yield call(
@@ -32,7 +34,7 @@ function* onSetup() {
   if (!isSettingUp) return;
   const { authenticator } = yield modules.otplib();
   const secret = authenticator.generateSecret();
-  yield creatQrCode('me', 'my service', secret);
+  yield creatQrCode(secret);
   yield put(actions.setup.request({ secret }));
 
   yield call(watchOtpTimer);
@@ -42,7 +44,7 @@ function* onThemeChange() {
   const isSettingUp = yield select(selectors.isSettingUp);
   if (!isSettingUp) return;
   const secret = yield select(selectors.secret);
-  yield creatQrCode('me', 'my service', secret);
+  yield creatQrCode(secret);
 }
 
 function* onVerify(action) {
