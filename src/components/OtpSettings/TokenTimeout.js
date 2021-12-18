@@ -24,30 +24,23 @@ const TokenTimeout = () => {
 
   return (
     <Box sx={sx.wrapper}>
-      <CircularProgress variant="determinate" value={value} color={color} />
-      <Box sx={sx.chipWrapper}>
-        <Chip label={label} sx={sx.chip} size="small" />
-      </Box>
+      <Chip
+        icon={
+          <CircularProgress size={14} variant="determinate" value={value} />
+        }
+        label={label}
+        color={color}
+      />
     </Box>
   );
 };
 
 const sx = {
   wrapper: {
-    position: 'relative',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  chipWrapper: {
-    top: 0,
-    bottom: 0,
-    position: 'absolute',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  chip: { borderRadius: '50%', width: '100%', height: '100%' },
 };
 
 export default TokenTimeout;
