@@ -6,6 +6,21 @@
       "english": "Spanish"
     }
   },
+  "otp": {
+    "settings": {
+      "actions": {
+        "setup": "Configuración de 2FA",
+        "cancelSetup": "Cancelar",
+        "disable": "Desactiva 2FA",
+        "copySecret": "Copiar código de configuración de contraseña de un solo uso"
+      },
+      "fields": {
+        "token": "OTP",
+        "tokenHelp": "Introduzca la contraseña de un solo uso (OTP) generada por su aplicación de autenticación",
+        "secondsRemaining": "{{ seconds }}s"
+      }
+    }
+  },
   "containers": {
     "home": {
       "title": "Hogar"
