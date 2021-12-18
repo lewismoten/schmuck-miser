@@ -6,6 +6,21 @@
       "english": "Turkish"
     }
   },
+  "otp": {
+    "settings": {
+      "actions": {
+        "setup": "2FA Kurulumu",
+        "cancelSetup": "İptal etmek",
+        "disable": "2FA'yı Devre Dışı Bırak",
+        "copySecret": "Tek seferlik şifre kurulum kodunu kopyalayın"
+      },
+      "fields": {
+        "token": "OTP",
+        "tokenHelp": "Kimlik doğrulayıcı uygulamanız tarafından oluşturulan Bir Kerelik Parolayı (OTP) girin",
+        "secondsRemaining": "{{ seconds }}s"
+      }
+    }
+  },
   "containers": {
     "home": {
       "title": "Ev"
