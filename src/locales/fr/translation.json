@@ -6,6 +6,21 @@
       "english": "French"
     }
   },
+  "otp": {
+    "settings": {
+      "actions": {
+        "setup": "Configurer 2FA",
+        "cancelSetup": "Annuler",
+        "disable": "Désactiver la 2FA",
+        "copySecret": "Copier le code de configuration du mot de passe unique"
+      },
+      "fields": {
+        "token": "OTP",
+        "tokenHelp": "Entrez le mot de passe à usage unique (OTP) généré par votre application d'authentification.",
+        "secondsRemaining": "{{ seconds }}s"
+      }
+    }
+  },
   "containers": {
     "home": {
       "title": "Accueil"
