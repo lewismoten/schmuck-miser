@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import * as cache from './cache';
 import * as themeSelectors from '../theme/selectors';
 
 const WARN_SECONDS = 4;
@@ -9,35 +8,52 @@ const MS_PER_SECOND = 1000;
 const slice = ({ otp = {} } = {}) => otp;
 
 export const secret = createSelector(slice, ({ secret }) => secret);
-export const user = createSelector(slice, ({ user }) => user);
-export const service = createSelector(slice, ({ service }) => service);
+const user = createSelector(slice, ({ user }) => encodeURIComponent(user));
+const service = createSelector(slice, ({ service }) =>
+  encodeURIComponent(service)
+);
+
 export const isSettingUp = createSelector(
   slice,
   ({ isSettingUp }) => !!isSettingUp
 );
-export const isVerified = createSelector(
-  slice,
-  ({ isVerified }) => !!isVerified
-);
-
 export const isEnabled = createSelector(
   secret,
   isSettingUp,
   (secret, isSettingUp) => (isSettingUp ? false : !!secret)
 );
 
-export const imageOptions = createSelector(
-  themeSelectors.palette,
-  (palette) => {
-    return {
-      margin: 0,
-      color: {
-        light: ensureColorAsHex(palette.background.paper),
-        dark: ensureColorAsHex(palette.primary.main),
-      },
-    };
+export const canShowSecret = createSelector(
+  isSettingUp,
+  secret,
+  (isSettingUp, secret) => isSettingUp && !!secret
+);
+
+export const qrData = createSelector(
+  secret,
+  user,
+  service,
+  canShowSecret,
+  (secret, user, service, canShowSecret) => {
+    if (!canShowSecret) return;
+    return `otpauth://totp/${service}:${user}?secret=${secret}&period=30&digits=6&algorithm=SHA1&issuer=${service}`;
   }
 );
+
+export const isVerified = createSelector(
+  slice,
+  ({ isVerified }) => !!isVerified
+);
+
+export const qrOptions = createSelector(themeSelectors.palette, (palette) => {
+  return {
+    margin: 0,
+    color: {
+      light: ensureColorAsHex(palette.background.paper),
+      dark: ensureColorAsHex(palette.primary.main),
+    },
+  };
+});
 
 const ensureColorAsHex = (color) => {
   const RGBA_PATTERN = /rgba\((\d+),\s*(\d+),\s*(\d+),\s*(1|0|0?\.\d+)\)/i;
@@ -52,14 +68,6 @@ const ensureColorAsHex = (color) => {
   }
   return color;
 };
-
-export const setupImage = createSelector(
-  secret,
-  isSettingUp,
-  imageOptions,
-  (secret, isSettingUp) =>
-    isSettingUp && !!secret ? cache.getCode() : undefined
-);
 
 export const timeout = createSelector(
   slice,

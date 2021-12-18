@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import * as selectors from '../../state/otp/selectors';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import Fab from '@mui/material/Fab';
+import buildQrCode from '../../state/otp/buildQrCode';
 
 const QRCode = () => {
-  const setupImage = useSelector(selectors.setupImage);
+  const [qrCode, setQrCode] = useState();
+
+  const qrData = useSelector(selectors.qrData);
+  const qrOptions = useSelector(selectors.qrOptions);
+  useEffect(() => {
+    setQrCode();
+    if (qrData) buildQrCode(qrData, qrOptions).then(setQrCode);
+  }, [qrData, qrOptions]);
 
   return (
     <Box
@@ -21,7 +29,7 @@ const QRCode = () => {
       <Box sx={{ width: 200, height: 200, position: 'relative' }}>
         <Avatar
           variant="rounded"
-          src={setupImage}
+          src={qrCode}
           sx={{
             position: 'absolute',
             width: 200,
