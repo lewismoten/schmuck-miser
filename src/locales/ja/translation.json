@@ -6,6 +6,21 @@
       "english": "Japanese"
     }
   },
+  "otp": {
+    "settings": {
+      "actions": {
+        "setup": "セットアップ2FA",
+        "cancelSetup": "キャンセル",
+        "disable": "2FAを無効にします",
+        "copySecret": "ワンタイムパスワードセットアップコードをコピーする"
+      },
+      "fields": {
+        "token": "OTP",
+        "tokenHelp": "認証システムアプリによって生成されたワンタイムパスワード（OTP）を入力します",
+        "secondsRemaining": "{{ seconds }}秒"
+      }
+    }
+  },
   "containers": {
     "home": {
       "title": "家"
