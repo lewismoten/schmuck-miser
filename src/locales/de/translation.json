@@ -6,6 +6,21 @@
       "english": "German"
     }
   },
+  "otp": {
+    "settings": {
+      "actions": {
+        "setup": "2FA einrichten",
+        "cancelSetup": "Abbrechen",
+        "disable": "2FA deaktivieren",
+        "copySecret": "Kopieren Sie den Einrichtungscode für das einmalige Passwort"
+      },
+      "fields": {
+        "token": "OTP",
+        "tokenHelp": "Geben Sie das von Ihrer Authentifizierungs-App generierte Einmalpasswort (OTP) ein",
+        "secondsRemaining": "{{ seconds }}S"
+      }
+    }
+  },
   "containers": {
     "home": {
       "title": "Heim"
