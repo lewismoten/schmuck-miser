@@ -22,6 +22,12 @@ module.exports = () => {
     module: {
       rules: [
         { test: /\.tsx?/, use: 'babel-loader', exclude: /node_modules/ },
+        {
+          test: /\.js$/,
+          use: 'source-map-loader',
+          enforce: 'pre',
+          exclude: /node_modules/,
+        },
         { test: /\.css$/i, use: ['style-loader', 'css-loader'] },
       ],
     },
