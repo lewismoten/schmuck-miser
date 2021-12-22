@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = () => {
   const config = {
-    entry: './src/index.ts',
+    entry: './src/index.tsx',
     output: {
       clean: true,
       asyncChunks: true,
@@ -32,7 +32,7 @@ module.exports = () => {
       ],
     },
     resolve: {
-      extensions: ['.ts', '.js', '.jsx', '.json'],
+      extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
       fallback: {
         buffer: require.resolve('buffer/'),
         crypto: require.resolve('crypto-browserify'),
