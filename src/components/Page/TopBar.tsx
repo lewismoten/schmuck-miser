@@ -6,8 +6,9 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
+import ITopBar from './ITopBar';
 
-const TopBar = ({ title }) => (
+const TopBar = ({ title }: ITopBar) => (
   <AppBar position="sticky" color="primary">
     <Toolbar>
       <IconButton

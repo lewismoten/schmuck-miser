@@ -6,9 +6,9 @@ import Box from '@mui/material/Box';
 import TopBar from './TopBar';
 import BottomBar from './BottomBar';
 import LaunchAdd from '../LaunchAdd';
+import IPage from './IPage';
 
-function Page({ title, children }) {
-  return (
+const Page = ({ title, children }: IPage) => (
     <Fragment>
       <TopBar title={title} />
       <Box className="App" sx={{ marginBottom: '60px', marginTop: '10px' }}>
@@ -18,7 +18,6 @@ function Page({ title, children }) {
       <BottomBar />
     </Fragment>
   );
-}
 
 Page.propTypes = {
   title: PropTypes.string,
