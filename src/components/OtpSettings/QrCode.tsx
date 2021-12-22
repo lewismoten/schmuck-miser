@@ -13,7 +13,7 @@ const QRCode = () => {
   const qrData = useSelector(selectors.qrData);
   const qrOptions = useSelector(selectors.qrOptions);
   useEffect(() => {
-    setQrCode();
+    setQrCode(undefined);
     if (qrData) buildQrCode(qrData, qrOptions).then(setQrCode);
   }, [qrData, qrOptions]);
 
