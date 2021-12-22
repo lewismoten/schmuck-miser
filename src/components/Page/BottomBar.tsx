@@ -22,7 +22,7 @@ const BottomBar = () => {
     location.pathname
   );
 
-  const onChangeBottomNavigation = (e, value) => {
+  const onChangeBottomNavigation = (e: any, value: string) => {
     setBottomNavigationValue(value);
     navigate(value);
   };
