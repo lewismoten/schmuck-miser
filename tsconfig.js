@@ -2,6 +2,7 @@
 module.exports = {
   compilerOptions: {
     outDir: './docs/',
+    sourceMap: true,
     noImplicitAny: true,
     module: 'es6',
     target: 'es5',
