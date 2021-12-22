@@ -1,40 +1,46 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, Fragment, ErrorInfo, ReactNode } from "react";
+import PropTypes from "prop-types";
 
-class ErrorBoundary extends Component {
-  constructor(props) {
+interface Props {
+  children: ReactNode;
+  onError?: (error: Error, errorInfo: ErrorInfo) => void;
+  fallback?: ReactNode;
+}
+
+interface State {
+  failed: boolean;
+}
+
+class ErrorBoundary extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = { failed: false };
   }
-  static getDerivedStateFromError() {
+
+  public state: State = { failed: false };
+  static getDerivedStateFromError(_: Error): State {
     return { failed: true };
   }
-  componentDidCatch(error, errorInfo) {
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     const { onError } = this.props;
-    if (typeof onError !== 'function') return;
+    if (typeof onError !== "function") return;
     try {
       onError(error, errorInfo);
     } catch (e) {
       // do nothing
     }
   }
-  render() {
-    const { fallback = 'Error', children } = this.props;
+  public render() {
+    const { fallback = "Error", children } = this.props;
     return this.state.failed ? <Element>{fallback}</Element> : children;
   }
 }
 
-const Element = ({ children }) =>
+interface ElementProps {
+  children: ReactNode;
+}
+
+const Element = ({ children }: ElementProps): JSX.Element =>
   React.isValidElement(children) ? children : <Fragment>{children}</Fragment>;
-
-ErrorBoundary.propTypes = {
-  children: PropTypes.node,
-  fallback: PropTypes.node,
-  onError: PropTypes.func,
-};
-
-Element.propTypes = {
-  children: PropTypes.node,
-};
 
 export default ErrorBoundary;
