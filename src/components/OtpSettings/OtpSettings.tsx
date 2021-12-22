@@ -21,7 +21,9 @@ const Security2FASetup = () => {
 
   useEffect(() => {
     dispatch(actions.initialize());
-    return () => dispatch(actions.uninitialize());
+    return () => {
+      dispatch(actions.uninitialize());
+    };
   }, []);
 
   return (
