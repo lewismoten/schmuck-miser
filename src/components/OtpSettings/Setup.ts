@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import * as selectors from '../../state/otp/selectors';
-import { ReactNode } from "react";
 
 interface Props {
   children: JSX.Element;
