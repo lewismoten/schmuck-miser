@@ -12,7 +12,7 @@ const Settings = () => {
   const title = t('containers.settings.title');
 
   const language = i18n.resolvedLanguage;
-  const setLanguage = (language) => {
+  const setLanguage = (language: string) => {
     dispatch(actions.changeLanguage(language));
   };
 
