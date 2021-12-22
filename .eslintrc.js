@@ -1,4 +1,7 @@
 /* eslint-env node */
+// module.exports = require("./node_modules/@eslint/eslintrc/dist/eslintrc.cjs");
+//module.exports = require("@eslint/eslintrc/dist/eslintrc.cjs");
+
 module.exports = {
   root: true,
   env: {
@@ -37,5 +40,14 @@ module.exports = {
   globals: {
     process: true,
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint/eslint-plugin'],
+  settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"],
+      "@typescript-eslint": [".ts", ".tsx"],
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
 };
