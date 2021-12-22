@@ -13,7 +13,9 @@ const Router = () => {
 
   useEffect(() => {
     dispatch(actions.load());
-    return () => dispatch(actions.unload());
+    return () => {
+      dispatch(actions.unload());
+    };
   }, []);
 
   return (
