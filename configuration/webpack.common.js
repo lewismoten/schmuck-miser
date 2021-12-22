@@ -20,7 +20,10 @@ module.exports = () => {
       }),
     ],
     module: {
-      rules: [{ test: /\.css$/i, use: ['style-loader', 'css-loader'] }],
+      rules: [
+        { test: /\.tsx?/, use: 'babel-loader', exclude: /node_modules/ },
+        { test: /\.css$/i, use: ['style-loader', 'css-loader'] },
+      ],
     },
     resolve: {
       extensions: ['.ts', '.js', '.jsx', '.json'],
