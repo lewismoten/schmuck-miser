@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = () => {
   const config = {
-    entry: './src/index.js',
+    entry: './src/index.ts',
     output: {
       clean: true,
       asyncChunks: true,

@@ -1,13 +1,13 @@
-import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom";
 
-import ErrorBoundary from './components/ErrorBoundary';
-import RootFallback from './components/RootFallback';
-import RootProvider from './components/RootProvider';
-import Theme from './components/Theme';
-import Router from './containers/Router';
-import Localization from './components/Localization';
-import './locales/i18n';
+import ErrorBoundary from "./components/ErrorBoundary";
+import RootFallback from "./components/RootFallback";
+import RootProvider from "./components/RootProvider";
+import Theme from "./components/Theme";
+import Router from "./containers/Router";
+import Localization from "./components/Localization";
+import "./locales/i18n";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,5 +29,5 @@ ReactDOM.render(
       </Suspense>
     </ErrorBoundary>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
