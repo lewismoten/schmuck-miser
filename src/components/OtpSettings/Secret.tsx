@@ -8,7 +8,7 @@ const Secret = () => {
   const secret = useSelector(selectors.secret);
 
   return (
-    <Typography align="center" varient="body2">
+    <Typography align="center" variant="body2">
       {secret}
       <CopySecretButton />
     </Typography>
