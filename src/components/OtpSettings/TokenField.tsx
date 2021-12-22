@@ -6,6 +6,13 @@ import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import { useTranslation } from 'react-i18next';
 
+interface InputElement {
+  value: string;
+}
+interface InputEvent {
+  target: InputElement;
+}
+
 const TokenField = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
@@ -16,7 +23,7 @@ const TokenField = () => {
 
   if (!isSettingUp) return null;
 
-  const onChange = ({ target: { value: token } }) => {
+  const onChange = ({ target: { value: token } }: InputEvent) => {
     if (token.length === 6) {
       dispatch(actions.verify({ token }));
       setValue('');
