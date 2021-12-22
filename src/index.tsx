@@ -9,6 +9,12 @@ import Router from "./containers/Router";
 import Localization from "./components/Localization";
 import "./locales/i18n";
 
+let employee = {
+  code: 10,
+  name: "John",
+};
+console.log(employee);
+
 ReactDOM.render(
   <React.StrictMode>
     <ErrorBoundary>
