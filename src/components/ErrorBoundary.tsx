@@ -12,11 +12,6 @@ interface State {
 }
 
 class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { failed: false };
-  }
-
   public state: State = { failed: false };
   static getDerivedStateFromError(_: Error): State {
     return { failed: true };
