@@ -68,6 +68,7 @@
     "@types/react-dom": "^17.0.11",
     "@types/redux-actions": "^2.6.2",
     "@types/redux-saga-routines": "^3.1.2",
+    "@typescript-eslint/parser": "^5.8.0",
     "babel-loader": "^8.2.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-plugin-typescript-to-proptypes": "^2.0.0",
