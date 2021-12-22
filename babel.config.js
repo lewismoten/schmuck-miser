@@ -7,6 +7,13 @@ module.exports = {
         modules: false,
       },
     ],
+    [
+      '@babel/preset-typescript',
+      {
+        isTSX: true,
+        allExtensions: true,
+      },
+    ],
     '@babel/preset-react',
   ],
   plugins: [
