@@ -23,7 +23,7 @@ module.exports = () => {
       rules: [{ test: /\.css$/i, use: ['style-loader', 'css-loader'] }],
     },
     resolve: {
-      extensions: ['.js', '.jsx', '.json'],
+      extensions: ['.ts', '.js', '.jsx', '.json'],
       fallback: {
         buffer: require.resolve('buffer/'),
         crypto: require.resolve('crypto-browserify'),
