@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, RefObject } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Page from '../../components/Page';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
@@ -13,7 +13,7 @@ const Io = () => {
   const dispatch = useDispatch();
   const isDownloading = useSelector(ioSelectors.isDownloading);
   const isUploading = useSelector(ioSelectors.isUploading);
-  const fileRef = useRef();
+  const fileRef = useRef<HTMLInputElement | null>(null);
 
   const title = t('containers.io.title');
   const downloadButton = t('containers.io.downloadButton');
@@ -26,11 +26,14 @@ const Io = () => {
   const onClickDownload = () => {
     dispatch(ioActions.download());
   };
-  const onChangeFile = ({
-    target: {
-      files: [file],
-    },
-  }) => {
+  const onChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: {
+        files: fileList
+      },
+    } = event;
+    if(!fileList || fileList.length === 0) return;
+    const file = fileList.item(0);
     if (!file) return;
     dispatch(ioActions.upload({ file }));
   };
