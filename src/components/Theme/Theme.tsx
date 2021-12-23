@@ -8,8 +8,10 @@ import * as actions from '../../state/theme/actions';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { NullableElement } from "../../types/NullableElement";
+import {IHasChildren} from '../../types/IHasChildren';
 
-const Theme = ({ children }) => {
+const Theme = ({ children }: IHasChildren): NullableElement => {
   const dispatch = useDispatch();
   const { i18n } = useTranslation();
   const dir = i18n.dir();
@@ -33,7 +35,9 @@ const Theme = ({ children }) => {
 
   useEffect(() => {
     dispatch(actions.initialize());
-    return () => dispatch(actions.uninitialize());
+    return () => {
+      dispatch(actions.uninitialize());
+    }
   }, []);
 
   useEffect(() => {
