@@ -10,6 +10,7 @@ import Autocomplete, {
 import TextField from '@mui/material/TextField';
 import { useTranslation } from 'react-i18next';
 import { SxProps, SystemProps, SystemStyleObject, Theme } from '@mui/system';
+import { ILanguageCode } from './ILanguageCode';
 
 const options = [
   'en-US',
@@ -25,8 +26,6 @@ const options = [
   'zh',
   'tlh',
 ];
-
-type ILanguageCode = string | null
 
 interface ISelectLangauge {
   value: string;

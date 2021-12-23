@@ -5,6 +5,7 @@ import SelectLanguage from '../../components/SelectLanguage';
 import OtpSettings from '../../components/OtpSettings';
 import { useTranslation } from 'react-i18next';
 import * as actions from '../../state/settings/actions';
+import { ILanguageCode } from '../../components/SelectLanguage/ILanguageCode';
 
 const Settings = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const Settings = () => {
   const title = t('containers.settings.title');
 
   const language = i18n.resolvedLanguage;
-  const setLanguage = (language: string) => {
+  const setLanguage = (language: ILanguageCode) => {
     dispatch(actions.changeLanguage(language));
   };
 
