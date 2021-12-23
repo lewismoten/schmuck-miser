@@ -9,7 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { NullableElement } from "../../types/NullableElement";
-import {IHasChildren} from '../../types/IHasChildren';
+import { IHasChildren } from '../../types/IHasChildren';
 
 const Theme = ({ children }: IHasChildren): NullableElement => {
   const dispatch = useDispatch();
